@@ -1,15 +1,15 @@
 package com.glippy.entity;
 
-/**
- * Created by oscar on 01/11/2014.
- */
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 public class ShoppingListItem {
     private String name;
     private int quantity;
 
-    public ShoppingListItem() {
-    }
+    @DBRef
+    private Item item;
+
+    public ShoppingListItem() {}
 
     public ShoppingListItem(String name, int quantity) {
         this.name = name;
@@ -34,6 +34,14 @@ public class ShoppingListItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     @Override

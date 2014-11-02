@@ -1,29 +1,36 @@
 package com.glippy.entity;
 
-
+import org.joda.time.DateTime;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Language;
+import org.springframework.data.mongodb.core.mapping.TextScore;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by oscar on 01/11/2014.
- */
-
-@Document()
+@Document
 public class ShoppingList {
     @Id
     private String id;
 
+    @CreatedDate
+    private DateTime createdDate;
+
+    @LastModifiedDate
+    private DateTime lastModifiedDate;
+
     @TextIndexed
     private String name;
 
+    @TextScore
+    private Float score;
+
     private List<ShoppingListItem> items = new ArrayList<ShoppingListItem>();
 
-
+    public ShoppingList() {}
 
     public ShoppingList(String name) {
         this.name = name;
@@ -45,6 +52,11 @@ public class ShoppingList {
         this.items = items;
     }
 
+    public ShoppingList addItem(ShoppingListItem item) {
+        this.items.add(item);
+        return this;
+    }
+
     public ShoppingList addItem(String itemName, int quantity) {
         this.items.add(new ShoppingListItem(itemName, quantity));
         return this;
@@ -53,9 +65,6 @@ public class ShoppingList {
     public ShoppingList addItem(String itemName) {
         this.items.add(new ShoppingListItem(itemName));
         return this;
-    }
-
-    public ShoppingList() {
     }
 
     public String getId() {

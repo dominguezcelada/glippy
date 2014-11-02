@@ -3,6 +3,7 @@ package com.glippy.domain;
 import com.glippy.entity.ShoppingList;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,11 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -37,6 +41,7 @@ public class ShoppingListRepositoryTest {
     @Test
     public void testSave() {
         ShoppingList shoppingList = new ShoppingList("Mi Lista").addItem("Coca-Cola",2).addItem("Beer");
+
         shoppingList = shoppingListRepository.save(shoppingList);
 
         assertThat(shoppingList.getId(), notNullValue());
@@ -45,8 +50,8 @@ public class ShoppingListRepositoryTest {
     @Test
     public void testMultipleSave() {
         // Setup
-        ShoppingList list1 = new ShoppingList("Mi Lista").addItem("Coca-Cola",2).addItem("Beer"),
-                     list2 = new ShoppingList("Mi Lista").addItem("Coca-Cola").addItem("Beer", 2);
+        ShoppingList list1 = new ShoppingList("Test List").addItem("Coca-Cola",2).addItem("Beer"),
+                     list2 = new ShoppingList("Another List").addItem("Coca-Cola");
 
         // Exercise
         shoppingListRepository.save(Arrays.asList(list1, list2));
@@ -56,11 +61,13 @@ public class ShoppingListRepositoryTest {
         Iterator<ShoppingList> it = lists.iterator();
         int lenght = 0;
         while(it.hasNext()) {
-            it.next();
+            ShoppingList l = it.next();
+            assertThat(l, anyOf(equalTo(list1), equalTo(list2)));
             lenght++;
         }
 
         assertThat(lenght, is(2));
+
 
     }
 
@@ -68,29 +75,35 @@ public class ShoppingListRepositoryTest {
     public void testFindByName() {
         // Setup
         ShoppingList list1 = new ShoppingList("Caprabo").addItem("Coca-Cola",2).addItem("Beer"),
-                     list2 = new ShoppingList("Caprabo a casa").addItem("Coca-Cola").addItem("Beer", 2);
+                     list2 = new ShoppingList("Caprabo a casa").addItem("Coca-Cola").addItem("Beer", 2),
+                     list3 = new ShoppingList("Another One").addItem("Beer", 2);
 
         // Exercise
-        shoppingListRepository.save(Arrays.asList(list1, list2));
+        shoppingListRepository.save(Arrays.asList(list1, list2, list3));
 
         // Assertion
         List<ShoppingList> lists = shoppingListRepository.findByName("Caprabo");
 
         assertThat(lists.size(), is(1));
+        assertThat(lists.get(0), is(equalTo(list1)));
     }
 
     @Test
-    public void testFindAllBy() {
+    public void testFindBySimilarText() {
         // Setup
         ShoppingList list1 = new ShoppingList("Caprabo").addItem("Coca-Cola",2).addItem("Beer"),
-                     list2 = new ShoppingList("Caprabo a casa").addItem("Coca-Cola").addItem("Beer", 2);
+                     list2 = new ShoppingList("Caprabo Calafell").addItem("Coca-Cola",6).addItem("Beer"),
+                     list3 = new ShoppingList("Mercadona a casa").addItem("Coca-Cola").addItem("Beer", 2);
 
         // Exercise
-        shoppingListRepository.save(Arrays.asList(list1, list2));
+        shoppingListRepository.save(Arrays.asList(list1, list2, list3));
 
         // Assertion
         List<ShoppingList> lists = shoppingListRepository.findAllBy(TextCriteria.forDefaultLanguage().matching("Caprabo"));
 
         assertThat(lists.size(), is(2));
+        assertThat(lists.contains(list1), is(true));
+        assertThat(lists.contains(list2), is(true));
+        assertThat(lists.contains(list3), is(false));
     }
 }
