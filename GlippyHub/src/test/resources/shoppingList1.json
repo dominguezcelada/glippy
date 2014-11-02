@@ -1,0 +1,13 @@
+{
+    "name": "list1",
+    "items": [
+        {
+            "name": "Coca-cola",
+            "quantity": 1
+        },
+        {
+            "name":"Cafe",
+            "quantity":2
+        }
+    ]
+}
