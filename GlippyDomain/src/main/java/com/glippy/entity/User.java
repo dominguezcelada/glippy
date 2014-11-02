@@ -1,10 +1,9 @@
 package com.glippy.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-/**
- * Created by oscar on 02/11/2014.
- */
+@Document
 public class User {
     @Id
     private String username;
