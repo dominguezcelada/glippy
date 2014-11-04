@@ -17,7 +17,7 @@ public class Item {
     @TextIndexed
     private String description;
 
-    private List<Float> prices;
+    private List<Price> prices;
 
     public String getId() {
         return id;
@@ -43,11 +43,4 @@ public class Item {
         this.description = description;
     }
 
-    public List<Float> getPrices() {
-        return prices;
-    }
-
-    public void setPrices(List<Float> prices) {
-        this.prices = prices;
-    }
 }
