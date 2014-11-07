@@ -2,12 +2,8 @@
     "name": "list2",
     "items": [
         {
-            "name": "Coca-cola",
+            "name": "Coffee",
             "quantity": 6
-        },
-        {
-            "name":"Cookies",
-            "quantity":20
         }
     ]
 }
