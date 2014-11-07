@@ -24,6 +24,5 @@ public class RunMeJob extends QuartzJobBean {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

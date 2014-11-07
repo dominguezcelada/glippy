@@ -51,4 +51,31 @@ public class Item {
         this.description = description;
     }
 
+    public List<Price> getPrices() {
+        return prices;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Item item = (Item) o;
+
+        if (description != null ? !description.equals(item.description) : item.description != null) return false;
+        if (!id.equals(item.id)) return false;
+        if (!name.equals(item.name)) return false;
+        if (prices != null ? !prices.equals(item.prices) : item.prices != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (prices != null ? prices.hashCode() : 0);
+        return result;
+    }
 }

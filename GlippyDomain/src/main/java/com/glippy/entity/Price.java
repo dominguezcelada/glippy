@@ -36,4 +36,27 @@ public class Price {
     public void setPrice(Float price) {
         this.price = price;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Price price1 = (Price) o;
+
+        if (Double.compare(price1.price, price) != 0) return false;
+        if (!supermarket.equals(price1.supermarket)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = supermarket.hashCode();
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
 }
