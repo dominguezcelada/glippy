@@ -1,12 +1,12 @@
 package com.glippy.entity;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.annotation.Id;
 
 public class ShoppingListItem {
+    @Id
     private String name;
     private int quantity;
 
-    @DBRef
     private Item item;
 
     public ShoppingListItem() {}
