@@ -32,82 +32,65 @@ public class ShoppingList {
 
     private List<ShoppingListItem> items = new ArrayList<ShoppingListItem>();
 
-    public ShoppingList() {}
+    // Constructors
+
+    public ShoppingList(String name, List<ShoppingListItem> items) {
+        this.name = name;
+        this.items = items;
+    }
+
+    public ShoppingList(String name, String itemName, double price, String supermarket, int quantity) {
+        this.name = name;
+        this.items.add(new ShoppingListItem(itemName,price,supermarket,quantity));
+    }
 
     public ShoppingList(String name) {
         this.name = name;
+    }
+
+    public ShoppingList(String name, String username) {
+        this.name = name;
+        this.username = username;
+    }
+
+    public ShoppingList() {
+
+    }
+
+    public ShoppingList(String name, ShoppingListItem shoppingListItem) {
+        this.name = name;
+        this.items.add(shoppingListItem);
+    }
+
+    // Getters
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getUsername() {
+        return username;
     }
 
     public List<ShoppingListItem> getItems() {
         return items;
     }
 
-    public void setItems(List<ShoppingListItem> items) {
-        this.items = items;
-    }
+    //Setters
 
-    public ShoppingList addItem(ShoppingListItem item) {
-        this.items.add(item);
-        return this;
-    }
-
-    public ShoppingList addItem(String itemName, int quantity) {
-        this.items.add(new ShoppingListItem(itemName, quantity));
-        return this;
-    }
-
-    public ShoppingList addItem(String itemName) {
-        this.items.add(new ShoppingListItem(itemName));
-        return this;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public DateTime getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(DateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public DateTime getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(DateTime lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
-    public Float getScore() {
-        return score;
-    }
-
-    public void setScore(Float score) {
-        this.score = score;
-    }
+    //Equals & Hashcode
 
     @Override
     public boolean equals(Object o) {
@@ -116,16 +99,55 @@ public class ShoppingList {
 
         ShoppingList that = (ShoppingList) o;
 
-        if (!items.equals(that.items)) return false;
+        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (items != null ? !items.equals(that.items) : that.items != null) return false;
+        if (lastModifiedDate != null ? !lastModifiedDate.equals(that.lastModifiedDate) : that.lastModifiedDate != null)
+            return false;
         if (!name.equals(that.name)) return false;
+        if (score != null ? !score.equals(that.score) : that.score != null) return false;
+        if (username != null ? !username.equals(that.username) : that.username != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + items.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (username != null ? username.hashCode() : 0);
+        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
+        result = 31 * result + (lastModifiedDate != null ? lastModifiedDate.hashCode() : 0);
+        result = 31 * result + name.hashCode();
+        result = 31 * result + (score != null ? score.hashCode() : 0);
+        result = 31 * result + (items != null ? items.hashCode() : 0);
         return result;
+    }
+
+
+    // Other
+
+    public ShoppingList addItem(String itemName) {
+        this.items.add(new ShoppingListItem(itemName,0.0,"mercadona",1));
+        return this;
+    }
+
+    public ShoppingList addItem(String itemName, int quantity) {
+        this.items.add(new ShoppingListItem(itemName,0.0,"mercadona",quantity));
+        return this;
+    }
+
+    public ShoppingList addItem(String itemName, double price) {
+        this.items.add(new ShoppingListItem(itemName,price,"mercadona",1));
+        return this;
+    }
+
+    public ShoppingList addItem(String itemName, double price, String supermarket) {
+        this.items.add(new ShoppingListItem(itemName,price,supermarket,1));
+        return this;
+    }
+
+    public ShoppingList addItem(String itemName, double price, String supermarket, int quantity) {
+        this.items.add(new ShoppingListItem(itemName,price,supermarket,quantity));
+        return this;
     }
 }

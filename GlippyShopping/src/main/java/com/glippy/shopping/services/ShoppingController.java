@@ -32,18 +32,18 @@ public class ShoppingController {
 
     // Requests BY USERNAME --- Shopping Lists
 
+    @RequestMapping(value = {"/users/{username}"}, method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createShoppingList(@PathVariable String username, @RequestBody ShoppingList shoppingList) {
+        shoppingList.setUsername(username);
+        shoppingListRepository.save(shoppingList);
+    }
+
     @RequestMapping(value = {"/users/{username}"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public String getUserShoppingLists(@PathVariable String username, ModelMap model) {
         model.addAttribute("shoppingLists", shoppingListRepository.findByUsername(username));
         return "/allShoppingLists";
-    }
-
-    @RequestMapping(value = {"/users/{username}"}, method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createUser(@PathVariable String username, @RequestBody ShoppingList shoppingList) {
-        shoppingList.setUsername(username);
-        shoppingListRepository.save(shoppingList);
     }
 
     @RequestMapping(value = {"/users/{username}/{listName}"}, method = RequestMethod.GET)
@@ -52,7 +52,6 @@ public class ShoppingController {
         model.addAttribute("shoppingList", shoppingListRepository.findByUsernameAndName(username, listName).get(0));
         return "/shoppingList";
     }
-
     @RequestMapping(value = {"/users/{username}/{listName}/{itemName}"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public String getUserShoppingListItems(@PathVariable String username, @PathVariable String listName, ModelMap model) {

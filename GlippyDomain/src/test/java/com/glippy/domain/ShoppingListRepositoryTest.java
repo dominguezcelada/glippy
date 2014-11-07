@@ -40,7 +40,7 @@ public class ShoppingListRepositoryTest {
 
     @Test
     public void testSave() {
-        ShoppingList shoppingList = new ShoppingList("Mi Lista").addItem("Coca-Cola",2).addItem("Beer");
+        ShoppingList shoppingList = new ShoppingList("Mi Lista").addItem("Coca-Cola",0.53,"mercadona",2).addItem("Beer");
 
         shoppingList = shoppingListRepository.save(shoppingList);
 
