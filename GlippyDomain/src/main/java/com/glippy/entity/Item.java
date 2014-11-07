@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Document
@@ -18,6 +19,13 @@ public class Item {
     private String description;
 
     private List<Price> prices;
+
+    public Item(String id, String name, String description, ArrayList<Price> prices) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.prices = prices;
+    }
 
     public String getId() {
         return id;

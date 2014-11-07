@@ -15,7 +15,6 @@ public interface ShoppingListRepository extends CrudRepository<ShoppingList, Str
 
     //Delete
     List<ShoppingList> deleteByUsername(String username);
-    List<ShoppingList> deleteByName(String shoppingListName);
 
     List<ShoppingList> findByUsernameAndName(String username, String listName);
 

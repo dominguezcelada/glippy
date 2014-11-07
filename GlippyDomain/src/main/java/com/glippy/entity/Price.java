@@ -5,9 +5,22 @@ package com.glippy.entity;
  */
 public class Price {
     private String supermarket;
-    private Float price;
+    private double price;
+
+    public void setSupermarket(String supermarket) {
+        this.supermarket = supermarket;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public Price(String supermarket, Float price) {
+        this.supermarket = supermarket;
+        this.price = price;
+    }
+
+    public Price(String supermarket, double price) {
         this.supermarket = supermarket;
         this.price = price;
     }
@@ -16,11 +29,7 @@ public class Price {
         return supermarket;
     }
 
-    public void setSupermarket(String supermarket) {
-        this.supermarket = supermarket;
-    }
-
-    public Float getPrice() {
+    public double getPrice() {
         return price;
     }
 
