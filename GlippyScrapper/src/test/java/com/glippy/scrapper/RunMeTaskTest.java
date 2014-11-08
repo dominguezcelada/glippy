@@ -17,7 +17,7 @@ public class RunMeTaskTest {
     public static String exampleSuper = "mercadona";
     public static String examplePostalCode = "08016";
 
-    @Test
+    /*@Test
     public void testScrapItem() throws Exception {
         RunMeTask task = new RunMeTask();
         Price price1 = new Price("Mercadona",1.70),
@@ -32,29 +32,36 @@ public class RunMeTaskTest {
 
         assertThat(originalItem.getPrices().size(), is(5));
         assertThat(extractedItem.getPrices().size(), is(5));
-//        assertThat(originalItem, is(equalTo(extractedItem)));
-    }
+        assertThat(originalItem, is(equalTo(extractedItem)));
+    }*/
 
-    @Test
+    /*@Test
     public void testScrapCategsLastLevel() throws IOException {
         RunMeTask task = new RunMeTask();
         ArrayList<Item> listExtractedItems = task.scrapCategs("http://www.carritus.com/tienda/super/" + exampleSuper + "/cp/" + examplePostalCode + "/cm/1972", ".content .item .image a", 0);
         assertThat(listExtractedItems.size(),is(5));
         assertThat(listExtractedItems.get(0).getName(),is("Roldan"));
         assertThat(listExtractedItems.get(0).getDescription(),is("Aceituna Aloreña (malagueña) Verdes, Partidas Y Aliñadas (tapa Amarilla), Roldan, Tarro 1440 G Escurrido 800 G"));
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void testScrapCategsLevel1() throws IOException {
         RunMeTask task = new RunMeTask();
         ArrayList<Item> listExtractedItems = task.scrapCategs("http://www.carritus.com/tienda/super/" + exampleSuper + "/cp/" + examplePostalCode + "/cm/2530", ".column-menu .in .item > a", 1);
         assertThat(listExtractedItems.size(),is(19));
-    }
+    }*/
 
-   /* @Test
+    /*@Test
     public void testScrapCategsLevel2() throws IOException {
         RunMeTask task = new RunMeTask();
         ArrayList<Item> listExtractedItems = task.scrapCategs("http://www.carritus.com/tienda/super/" + exampleSuper + "/cp/" + examplePostalCode + "/cm/2493", ".cat-nivel-3 a", 2);
         assertThat(listExtractedItems.size(),is(297));
     }*/
+
+    @Test
+    public void testScrapCategsLevel2() throws IOException {
+        RunMeTask task = new RunMeTask();
+        ArrayList<String> listExtractedItems = task.scrapCategUrls("http://www.carritus.com/tienda/super/" + exampleSuper + "/cp/" + examplePostalCode + "/cm/2493", ".cat-nivel-3 a", 2);
+        assertThat(listExtractedItems.size(),is(297));
+    }
 }

@@ -34,9 +34,9 @@ public class ShoppingController {
 
     @RequestMapping(value = {"/users/{username}"}, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void createShoppingList(@PathVariable String username, @RequestBody ShoppingList shoppingList) {
-        shoppingList.setUsername(username);
-        shoppingListRepository.save(shoppingList);
+    public void createShoppingList(@PathVariable String username, @RequestBody ShoppingList list) {
+        list.setUsername(username);
+        shoppingListRepository.save(list);
     }
 
     @RequestMapping(value = {"/users/{username}"}, method = RequestMethod.GET)

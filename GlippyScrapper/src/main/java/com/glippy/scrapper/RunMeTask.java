@@ -8,6 +8,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class RunMeTask {
 
@@ -26,9 +27,8 @@ public class RunMeTask {
     }
 
     public ArrayList<Item> scrapCategs(String url, String selector, int level) throws IOException {
-        System.setProperty("http.proxyHost", "192.168.2.164");
-        System.setProperty("http.proxyPort", "8888");
         Document doc = Jsoup.connect(url).timeout(999999999).get();
+//        System.out.println("Category: " + url + "\n");
         Elements categs = doc.select(selector);
         ArrayList<Item> listItems = new ArrayList<Item>();
         for(int i = 0; i < categs.size(); i++) {
@@ -42,5 +42,22 @@ public class RunMeTask {
             }
         }
         return listItems;
+    }
+
+    public ArrayList<String> scrapCategUrls(String url, String selector, int level) throws IOException {
+        Document doc = Jsoup.connect(url).timeout(999999999).get();
+//        System.out.println("Category: " + url + "\n");
+        Elements categs = doc.select(selector);
+        ArrayList<String> listURLs = new ArrayList<String>();
+        for(int i = 0; i < categs.size(); i++) {
+            if(level == 2) {
+                scrapCategUrls("http://www.carritus.com" + categs.get(i).attr("href"), ".column-menu .in .item > a", level - 1);
+            } else if(level == 1) {
+                listURLs.addAll(scrapCategUrls("http://www.carritus.com" + categs.get(i).attr("href"), ".content .item .image a", level - 1));
+            } else {
+                return listURLs;
+            }
+        }
+        return listURLs;
     }
 }

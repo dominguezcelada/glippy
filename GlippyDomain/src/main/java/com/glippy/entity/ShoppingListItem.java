@@ -1,5 +1,6 @@
 package com.glippy.entity;
 
+import com.sun.istack.internal.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 
@@ -9,41 +10,75 @@ import java.util.List;
 public class ShoppingListItem {
 
     @TextIndexed
-    private Item item;
+    private String name;
+
+    @TextIndexed
+    private String description;
+
+    private double price;
+
+    private String supermarket;
 
     private int quantity;
 
     // Constructors
 
-    public ShoppingListItem(Item item, int quantity) {
-        this.item = item;
-        this.quantity = quantity;
+
+    public ShoppingListItem() {
     }
 
     public ShoppingListItem(String itemName, double price, String supermarket, int quantity) {
-        this.item = new Item(itemName,price,supermarket);
+        this.name = itemName;
+        this.price = price;
+        this.supermarket = supermarket;
         this.quantity = quantity;
     }
 
     public ShoppingListItem(String itemName) {
-        this.item = new Item(itemName);
-    }
-
-    public ShoppingListItem(String itemName, int quantity) {
-        this.item = new Item(itemName);
-        this.quantity = quantity;
-    }
-
-    public ShoppingListItem(Item item) {
-        this.item = item;
+        this.name = itemName;
+        this.price = 0.0;
+        this.supermarket = "mercadona";
         this.quantity = 1;
     }
 
+    public ShoppingListItem(String itemName, int quantity) {
+        this.name = itemName;
+        this.price = 0.0;
+        this.supermarket = "mercadona";
+        this.quantity = quantity;
+    }
+
+    public ShoppingListItem(String itemName, String supermarket, double price, int quantity) {
+        this.name = itemName;
+        this.supermarket = supermarket;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public ShoppingListItem(String itemName, String description, String supermarket, double price, int quantity) {
+        this.name = itemName;
+        this.description = description;
+        this.supermarket = supermarket;
+        this.price = price;
+        this.quantity = quantity;
+    }
 
     // Getters
 
-    public Item getItem() {
-        return item;
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public String getSupermarket() {
+        return supermarket;
     }
 
     public int getQuantity() {
@@ -53,8 +88,20 @@ public class ShoppingListItem {
 
     //Setters
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setSupermarket(String supermarket) {
+        this.supermarket = supermarket;
     }
 
     public void setQuantity(int quantity) {
@@ -71,25 +118,28 @@ public class ShoppingListItem {
 
         ShoppingListItem that = (ShoppingListItem) o;
 
+        if (Double.compare(that.price, price) != 0) return false;
         if (quantity != that.quantity) return false;
-        if (item != null ? !item.equals(that.item) : that.item != null) return false;
+        if (description != null ? !description.equals(that.description) : that.description != null) return false;
+        if (!name.equals(that.name)) return false;
+        if (!supermarket.equals(that.supermarket)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = item != null ? item.hashCode() : 0;
+        int result;
+        long temp;
+        result = name.hashCode();
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + supermarket.hashCode();
         result = 31 * result + quantity;
         return result;
     }
 
-
     // Other
-
-    public ShoppingListItem addPrice(String supermarket, double price) {
-        this.item.addPrice(supermarket, price);
-        return this;
-    }
 
 }

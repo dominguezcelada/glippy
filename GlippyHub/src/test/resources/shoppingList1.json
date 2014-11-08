@@ -1,13 +1,13 @@
 {
     "name": "list1",
+    "username": "",
     "items": [
         {
-            "name": "Coca-cola",
+            "name":"Coca-Cola",
+            "description":"Bebida refrescante",
+            "price":0.53,
+            "supermarket":"mercadona",
             "quantity": 1
-        },
-        {
-            "name":"Cafe",
-            "quantity":2
         }
     ]
 }

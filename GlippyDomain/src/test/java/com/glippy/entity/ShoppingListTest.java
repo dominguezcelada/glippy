@@ -30,7 +30,7 @@ public class ShoppingListTest {
 
     @Test
     public void testEquals() throws Exception {
-        ShoppingList list2 = new ShoppingList("List",new ShoppingListItem(new Item("Beer",new Price("mercadona",0.45)),2));
+        ShoppingList list2 = new ShoppingList("List",new ShoppingListItem("Beer","mercadona",0.45,2));
         ShoppingList list1 = new ShoppingList("List","Beer",0.45,"mercadona",2);
 
 
@@ -39,8 +39,8 @@ public class ShoppingListTest {
 
     @Test
     public void testAddItem() throws Exception {
-        ShoppingListItem item1 = new ShoppingListItem(new Item("Beer",new Price("mercadona",0.45)),2);
-        ShoppingListItem item2 = new ShoppingListItem(new Item("Coca-Cola"));
+        ShoppingListItem item1 = new ShoppingListItem("Beer","mercadona",0.45,2);
+        ShoppingListItem item2 = new ShoppingListItem("Coca-Cola");
         ShoppingList list1 = new ShoppingList("List",Arrays.asList(item1,item2));
         ShoppingList list2 = new ShoppingList("List");
 

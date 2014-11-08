@@ -11,11 +11,10 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 public class ShoppingListItemTest {
     @Test
-    public void testEquals() {
-        ArrayList<Price> prices = new ArrayList<Price>();
-        prices.add(new Price("mercadona",0.53));
-        ShoppingListItem item1 = new ShoppingListItem(new Item("0","Coca-Cola","Bebida refrescante",prices),2);
-        ShoppingListItem item2 = new ShoppingListItem(new Item("0","Coca-Cola","Bebida refrescante",prices),2);
+    public void testConstructor() {
+        ShoppingListItem item1 = new ShoppingListItem("Coca-Cola","Bebida refrescante","mercadona",0.0,2);
+        ShoppingListItem item2 = new ShoppingListItem("Coca-Cola",2);
+        item2.setDescription("Bebida refrescante");
 
         assertThat(item1, is(equalTo(item2)));
     }

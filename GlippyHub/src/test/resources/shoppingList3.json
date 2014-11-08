@@ -1,13 +1,4 @@
 {
     "name": "list3",
-    "items": [
-        {
-            "name": "orange Juice",
-            "quantity": 1
-        },
-        {
-            "name":"Ice",
-            "quantity":2
-        }
-    ]
+    "username": ""
 }
