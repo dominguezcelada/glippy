@@ -7,12 +7,18 @@ public class Price {
     private String supermarket;
     private double price;
 
-    public void setSupermarket(String supermarket) {
-        this.supermarket = supermarket;
+
+    public Price() {
     }
 
-    public void setPrice(double price) {
+    public Price(double price) {
+        this.supermarket = "mercadona";
         this.price = price;
+    }
+
+    public Price(String supermarket) {
+        this.supermarket = supermarket;
+        this.price = 0.0;
     }
 
     public Price(String supermarket, Float price) {
@@ -25,6 +31,27 @@ public class Price {
         this.price = price;
     }
 
+    public Price(double price, String supermarket) {
+        this.supermarket = supermarket;
+        this.price = price;
+    }
+
+    // Setters
+
+    public void setSupermarket(String supermarket) {
+        this.supermarket = supermarket;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    // Getters
+
     public String getSupermarket() {
         return supermarket;
     }
@@ -33,9 +60,7 @@ public class Price {
         return price;
     }
 
-    public void setPrice(Float price) {
-        this.price = price;
-    }
+    // Equals
 
     @Override
     public boolean equals(Object o) {
