@@ -5,7 +5,7 @@ package com.glippy.entity;
  */
 public class Price {
     private String supermarket;
-    private double price;
+    private Float price;
 
 
     public Price() {
@@ -13,27 +13,27 @@ public class Price {
 
     public Price(double price) {
         this.supermarket = "mercadona";
-        this.price = price;
+        this.price = new Float(price);
     }
 
     public Price(String supermarket) {
         this.supermarket = supermarket;
-        this.price = 0.0;
+        this.price = new Float(0.0);
     }
 
     public Price(String supermarket, Float price) {
         this.supermarket = supermarket;
-        this.price = price;
+        this.price = new Float(price);
     }
 
     public Price(String supermarket, double price) {
         this.supermarket = supermarket;
-        this.price = price;
+        this.price = new Float(price);
     }
 
     public Price(double price, String supermarket) {
         this.supermarket = supermarket;
-        this.price = price;
+        this.price = new Float(price);
     }
 
     // Setters
@@ -43,7 +43,7 @@ public class Price {
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        this.price = new Float(price);
     }
 
     public void setPrice(Float price) {
@@ -62,6 +62,7 @@ public class Price {
 
     // Equals
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,7 +71,7 @@ public class Price {
         Price price1 = (Price) o;
 
         if (Double.compare(price1.price, price) != 0) return false;
-        if (!supermarket.equals(price1.supermarket)) return false;
+        if (supermarket != null ? !supermarket.equals(price1.supermarket) : price1.supermarket != null) return false;
 
         return true;
     }
@@ -79,7 +80,7 @@ public class Price {
     public int hashCode() {
         int result;
         long temp;
-        result = supermarket.hashCode();
+        result = supermarket != null ? supermarket.hashCode() : 0;
         temp = Double.doubleToLongBits(price);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;

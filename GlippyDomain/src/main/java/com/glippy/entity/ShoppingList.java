@@ -27,9 +27,6 @@ public class ShoppingList {
     @TextIndexed
     private String name;
 
-    @TextScore
-    private Float score;
-
     private List<ShoppingListItem> items = new ArrayList<ShoppingListItem>();
 
     // Constructors
@@ -105,13 +102,9 @@ public class ShoppingList {
 
         ShoppingList that = (ShoppingList) o;
 
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (items != null ? !items.equals(that.items) : that.items != null) return false;
-        if (lastModifiedDate != null ? !lastModifiedDate.equals(that.lastModifiedDate) : that.lastModifiedDate != null)
-            return false;
         if (!name.equals(that.name)) return false;
-        if (score != null ? !score.equals(that.score) : that.score != null) return false;
         if (username != null ? !username.equals(that.username) : that.username != null) return false;
 
         return true;
@@ -121,13 +114,11 @@ public class ShoppingList {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (lastModifiedDate != null ? lastModifiedDate.hashCode() : 0);
         result = 31 * result + name.hashCode();
-        result = 31 * result + (score != null ? score.hashCode() : 0);
         result = 31 * result + (items != null ? items.hashCode() : 0);
         return result;
     }
+
 
 
     // AddItem
