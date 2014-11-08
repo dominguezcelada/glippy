@@ -2,6 +2,7 @@ package com.glippy.shopping.services;
 
 import com.glippy.domain.ShoppingListRepository;
 import com.glippy.entity.ShoppingList;
+import com.glippy.entity.ShoppingListItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -55,8 +56,10 @@ public class ShoppingController {
     @RequestMapping(value = {"/users/{username}/{listName}/{itemName}"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public String getUserShoppingListItems(@PathVariable String username, @PathVariable String listName, ModelMap model) {
-        model.addAttribute("shoppingItems", shoppingListRepository.findByUsernameAndName(username, listName).get(0).getItems());
-        return "/allShoppingItems";
+        ShoppingListItem item = shoppingListRepository.findByUsernameAndName(username, listName).get(0).getItems().get(0);
+        model.addAttribute("shoppingItem", item);
+        model.addAttribute("total", item.getQuantity() * item.getPrice());
+        return "/shoppingItem";
     }
 
     @RequestMapping(value = "/users/{username}", method = RequestMethod.DELETE)
