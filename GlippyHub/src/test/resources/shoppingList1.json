@@ -7,7 +7,21 @@
             "description":"Bebida refrescante",
             "price":0.53,
             "supermarket":"mercadona",
-            "quantity": 1
+            "quantity": 6
+        },
+        {
+            "name":"Fanta",
+            "description":"Bebida refrescante",
+            "price":0.58,
+            "supermarket":"alcampo",
+            "quantity": 6
+        },
+        {
+            "name":"Agua",
+            "description":"Bebida",
+            "price":0.34,
+            "supermarket":"mercadona",
+            "quantity": 4
         }
     ]
 }

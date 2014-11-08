@@ -1,4 +1,34 @@
 {
     "name": "list3",
-    "username": ""
+    "username": "",
+    "items": [
+        {
+            "name":"Coca-Cola 2L.",
+            "description":"Bebida refrescante",
+            "price":1.53,
+            "supermarket":"dia",
+            "quantity": 1
+        },
+        {
+            "name":"Hielo",
+            "description":"",
+            "price":1.5,
+            "supermarket":"dia",
+            "quantity": 2
+        },
+        {
+            "name":"Vasos de plástico",
+            "description":"",
+            "price":1.23,
+            "supermarket":"dia",
+            "quantity": 4
+        },
+        {
+            "name":"Ron Barceló",
+            "description":"Alcohol",
+            "price":15.23,
+            "supermarket":"dia",
+            "quantity": 1
+        }
+    ]
 }

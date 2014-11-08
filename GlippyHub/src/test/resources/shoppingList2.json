@@ -3,8 +3,25 @@
     "username": "",
     "items": [
         {
-            "name": "Coffee",
-            "quantity": 6
+            "name":"Galletas Príncipe",
+            "description":"Cookies de chocolate",
+            "price":2.75,
+            "supermarket":"carrefour",
+            "quantity": 1
+        },
+        {
+            "name":"Orange Juice",
+            "description":"Bebida refrescante",
+            "price":1.33,
+            "supermarket":"carrefour",
+            "quantity": 4
+        },
+        {
+            "name":"Coffee",
+            "description":"Cafés",
+            "price":1.10,
+            "supermarket":"carrefour",
+            "quantity": 1
         }
     ]
 }
