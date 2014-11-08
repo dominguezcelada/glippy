@@ -39,13 +39,27 @@ public class ShoppingList {
         this.items = items;
     }
 
+    public ShoppingList(String name) {
+        this.name = name;
+    }
+
+    public ShoppingList(String name, ShoppingListItem shoppingListItem) {
+        this.name = name;
+        this.items.add(shoppingListItem);
+    }
+
     public ShoppingList(String name, String itemName, double price, String supermarket, int quantity) {
         this.name = name;
         this.items.add(new ShoppingListItem(itemName,price,supermarket,quantity));
     }
 
-    public ShoppingList(String name) {
+    public ShoppingList(String name, String itemName, String supermarket, int quantity, double price) {
         this.name = name;
+        this.items.add(new ShoppingListItem(itemName,price,supermarket,quantity));
+    }
+
+    public ShoppingList() {
+
     }
 
     public ShoppingList(String name, String username) {
@@ -53,14 +67,6 @@ public class ShoppingList {
         this.username = username;
     }
 
-    public ShoppingList() {
-
-    }
-
-    public ShoppingList(String name, ShoppingListItem shoppingListItem) {
-        this.name = name;
-        this.items.add(shoppingListItem);
-    }
 
     // Getters
 
@@ -124,7 +130,7 @@ public class ShoppingList {
     }
 
 
-    // Other
+    // AddItem
 
     public ShoppingList addItem(String itemName) {
         this.items.add(new ShoppingListItem(itemName,0.0,"mercadona",1));

@@ -1,11 +1,7 @@
 package com.glippy.entity;
 
-import com.sun.istack.internal.NotNull;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class ShoppingListItem {
 
@@ -22,7 +18,6 @@ public class ShoppingListItem {
     private int quantity;
 
     // Constructors
-
 
     public ShoppingListItem() {
     }
@@ -61,6 +56,27 @@ public class ShoppingListItem {
         this.supermarket = supermarket;
         this.price = price;
         this.quantity = quantity;
+    }
+
+    public ShoppingListItem(String itemName, int quantity, String supermarket, double price) {
+        this.name = itemName;
+        this.quantity = quantity;
+        this.supermarket = supermarket;
+        this.price = price;
+    }
+
+    public ShoppingListItem(String itemName, double price) {
+        this.name = itemName;
+        this.price = price;
+        this.quantity = 1;
+        this.supermarket = "mercadona";
+    }
+
+    public ShoppingListItem(String itemName, double price, String supermarket) {
+        this.name = itemName;
+        this.price = price;
+        this.supermarket = supermarket;
+        this.quantity = 1;
     }
 
     // Getters
