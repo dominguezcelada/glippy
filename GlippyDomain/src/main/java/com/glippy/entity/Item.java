@@ -24,17 +24,18 @@ public class Item {
 
     // Constructors
 
-    public Item(String id, String name, String description, List<Price> prices) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.prices = prices;
+    public Item(String itemName) {
+        this.name = itemName;
+        this.prices.add(new Price("mercadona",0.0));
     }
 
-    public Item(String id, String name, String description, ArrayList<Price> prices) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
+    public Item(String itemName, Price price) {
+        this.name = itemName;
+        this.prices.add(price);
+    }
+
+    public Item(String itemName, ArrayList<Price> prices) {
+        this.name = itemName;
         this.prices = prices;
     }
 
@@ -43,19 +44,19 @@ public class Item {
         this.prices.add(new Price(supermarket, price));
     }
 
-    public Item(String itemName) {
-        this.name = itemName;
-        this.prices.add(new Price("mercadona",0.0));
-    }
-
     public Item(String itemName, String supermarket, double price) {
         this.name = itemName;
         this.prices.add(new Price (supermarket,price));
     }
 
-    public Item(String itemName, Price price) {
+    public Item(String itemName, String description, List<Price> prices) {
         this.name = itemName;
-        this.prices.add(price);
+        this.description = description;
+        this.prices = prices;
+    }
+
+    public Item() {
+
     }
 
 
@@ -122,8 +123,9 @@ public class Item {
 
     // Other
 
-    public void addPrice(String supermarket, double price) {
+    public Item addPrice(String supermarket, double price) {
         this.prices.add(new Price(supermarket,price));
+        return this;
     }
 
 

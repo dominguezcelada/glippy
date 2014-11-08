@@ -22,13 +22,6 @@ public class ShoppingListItem {
     public ShoppingListItem() {
     }
 
-    public ShoppingListItem(String itemName, double price, String supermarket, int quantity) {
-        this.name = itemName;
-        this.price = price;
-        this.supermarket = supermarket;
-        this.quantity = quantity;
-    }
-
     public ShoppingListItem(String itemName) {
         this.name = itemName;
         this.price = 0.0;
@@ -41,28 +34,6 @@ public class ShoppingListItem {
         this.price = 0.0;
         this.supermarket = "mercadona";
         this.quantity = quantity;
-    }
-
-    public ShoppingListItem(String itemName, String supermarket, double price, int quantity) {
-        this.name = itemName;
-        this.supermarket = supermarket;
-        this.price = price;
-        this.quantity = quantity;
-    }
-
-    public ShoppingListItem(String itemName, String description, String supermarket, double price, int quantity) {
-        this.name = itemName;
-        this.description = description;
-        this.supermarket = supermarket;
-        this.price = price;
-        this.quantity = quantity;
-    }
-
-    public ShoppingListItem(String itemName, int quantity, String supermarket, double price) {
-        this.name = itemName;
-        this.quantity = quantity;
-        this.supermarket = supermarket;
-        this.price = price;
     }
 
     public ShoppingListItem(String itemName, double price) {
@@ -78,6 +49,36 @@ public class ShoppingListItem {
         this.supermarket = supermarket;
         this.quantity = 1;
     }
+
+    public ShoppingListItem(String itemName, double price, String supermarket, int quantity) {
+        this.name = itemName;
+        this.price = price;
+        this.supermarket = supermarket;
+        this.quantity = quantity;
+    }
+
+    public ShoppingListItem(String itemName, String supermarket, double price, int quantity) {
+        this.name = itemName;
+        this.supermarket = supermarket;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public ShoppingListItem(String itemName, int quantity, String supermarket, double price) {
+        this.name = itemName;
+        this.quantity = quantity;
+        this.supermarket = supermarket;
+        this.price = price;
+    }
+
+    public ShoppingListItem(String itemName, String description, String supermarket, double price, int quantity) {
+        this.name = itemName;
+        this.description = description;
+        this.supermarket = supermarket;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
 
     // Getters
 
