@@ -1,8 +1,5 @@
 package com.glippy.scrapper;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
@@ -11,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class JobBebe extends QuartzJobBean {
+
+    private ScrapTask scrapTask = new ScrapTask();
 
     public static String exampleSuper = "mercadona";
     public static String examplePostalCode = "08016";
@@ -21,21 +20,10 @@ public class JobBebe extends QuartzJobBean {
         String url = "http://www.carritus.com/tienda/super/" + exampleSuper + "/cp/" + examplePostalCode + "/cm/2811";
         String selector = "#cm-bebe .cat-nivel-3 a";
         try {
-            ArrayList<String> urls = obtainCategs(url, selector);
+            ArrayList<String> urls = scrapTask.obtainCategs(url, selector);
             System.out.println("JobBebe: " + urls.size());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    private ArrayList<String> obtainCategs(String url, String selector) throws IOException {
-        ArrayList<String> categUrls = new ArrayList<String>();
-        Document doc = Jsoup.connect(url).get();
-        Elements categs = doc.select(selector);
-        for(int i = 0; i < categs.size(); i++) {
-            categUrls.add(categs.get(i).attr("href"));
-        }
-        return categUrls;
-    }
-
 }

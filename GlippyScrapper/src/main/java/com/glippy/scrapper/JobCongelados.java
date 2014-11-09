@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 public class JobCongelados extends QuartzJobBean {
 
+    private ScrapTask scrapTask = new ScrapTask();
+
     public static String exampleSuper = "mercadona";
     public static String examplePostalCode = "08016";
 
@@ -21,21 +23,11 @@ public class JobCongelados extends QuartzJobBean {
         String url = "http://www.carritus.com/tienda/super/" + exampleSuper + "/cp/" + examplePostalCode + "/cm/2811";
         String selector = "#cm-congelados-y-helados .cat-nivel-3 a";
         try {
-            ArrayList<String> urls = obtainCategs(url, selector);
+            ArrayList<String> urls = scrapTask.obtainCategs(url, selector);
             System.out.println("JobCongelados: " + urls.size());
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private ArrayList<String> obtainCategs(String url, String selector) throws IOException {
-        ArrayList<String> categUrls = new ArrayList<String>();
-        Document doc = Jsoup.connect(url).get();
-        Elements categs = doc.select(selector);
-        for(int i = 0; i < categs.size(); i++) {
-            categUrls.add(categs.get(i).attr("href"));
-        }
-        return categUrls;
     }
 
 }

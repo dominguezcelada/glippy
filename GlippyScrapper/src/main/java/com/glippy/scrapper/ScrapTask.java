@@ -12,6 +12,9 @@ import java.util.concurrent.TimeUnit;
 
 public class ScrapTask {
 
+    public ScrapTask() {
+    }
+
     public Item scrapItem(String url) throws IOException {
         Document doc = Jsoup.connect(url).get();
         String name = doc.select(".info h2").text();
@@ -43,5 +46,13 @@ public class ScrapTask {
         return listItems;
     }
 
-
+    public ArrayList<String> obtainCategs(String url, String selector) throws IOException {
+        ArrayList<String> categUrls = new ArrayList<String>();
+        Document doc = Jsoup.connect(url).get();
+        Elements categs = doc.select(selector);
+        for(int i = 0; i < categs.size(); i++) {
+            categUrls.add(categs.get(i).attr("href"));
+        }
+        return categUrls;
+    }
 }
