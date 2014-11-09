@@ -43,13 +43,5 @@ public class ScrapTask {
         return listItems;
     }
 
-    public ArrayList<String> obtainCategs(String url) throws IOException {
-        ArrayList<String> categUrls = new ArrayList<String>();
-        Document doc = Jsoup.connect(url).get();
-        Elements categs = doc.select(".cat-nivel-3 a");
-        for(int i = 0; i < categs.size(); i++) {
-            categUrls.add(categs.get(i).attr("href"));
-        }
-        return categUrls;
-    }
+
 }
