@@ -70,19 +70,16 @@ public class Price {
 
         Price price1 = (Price) o;
 
-        if (Double.compare(price1.price, price) != 0) return false;
-        if (supermarket != null ? !supermarket.equals(price1.supermarket) : price1.supermarket != null) return false;
+        if (!price.equals(price1.price)) return false;
+        if (!supermarket.equals(price1.supermarket)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = supermarket != null ? supermarket.hashCode() : 0;
-        temp = Double.doubleToLongBits(price);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        int result = supermarket.hashCode();
+        result = 31 * result + price.hashCode();
         return result;
     }
 }

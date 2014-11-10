@@ -1,5 +1,6 @@
 package com.glippy.scrapper;
 
+import com.glippy.domain.ItemRepository;
 import com.glippy.entity.Item;
 import com.glippy.entity.Price;
 import org.jsoup.Jsoup;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class ScrapTask {
+
+    private ItemRepository itemRepository;
 
     public ScrapTask() {
     }
@@ -47,12 +50,16 @@ public class ScrapTask {
     }
 
     public ArrayList<String> obtainCategs(String url, String selector) throws IOException {
-        ArrayList<String> categUrls = new ArrayList<String>();
-        Document doc = Jsoup.connect(url).get();
-        Elements categs = doc.select(selector);
+        Document docCateg = Jsoup.connect(url).get();
+        Elements categs = docCateg.select(selector);
+        ArrayList<String> subcategUrls = new ArrayList<String>();
         for(int i = 0; i < categs.size(); i++) {
-            categUrls.add(categs.get(i).attr("href"));
+           Document docSubCateg = Jsoup.connect("http://carritus.com" + categs.get(i).attr("href")).get();
+           Elements subcats = docSubCateg.select(".column-menu .in .item > a");
+           for(int j = 0; j < subcats.size(); j++) {
+               subcategUrls.add(subcats.get(j).attr("href"));
+           }
         }
-        return categUrls;
+        return subcategUrls;
     }
 }
