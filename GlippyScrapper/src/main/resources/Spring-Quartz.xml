@@ -3,130 +3,86 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="jobAlimentacion" class="com.glippy.scrapper.JobAlimentacion" />
-    <bean id="jobAnimales" class="com.glippy.scrapper.JobAnimales" />
-    <bean id="jobBebe" class="com.glippy.scrapper.JobBebe" />
-    <bean id="jobCongelados" class="com.glippy.scrapper.JobCongelados" />
-    <bean id="jobCuidadoPersonal" class="com.glippy.scrapper.JobCuidadoPersonal" />
-    <bean id="jobDieteticos" class="com.glippy.scrapper.JobDieteticos" />
-    <bean id="jobFrescos" class="com.glippy.scrapper.JobFrescos" />
-    <bean id="jobHogar" class="com.glippy.scrapper.JobHogar" />
-    <bean id="jobPreparados" class="com.glippy.scrapper.JobPreparados" />
+    <bean id="jobCategories" class="com.glippy.scrapper.JobCategories" />
 
     <!-- Quartz Jobs -->
-    <bean name="JobAlimentacion" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-        <property name="jobClass" value="com.glippy.scrapper.JobAlimentacion" />
+    <bean name="JobCategories" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.glippy.scrapper.JobCategories" />
         <property name="jobDataAsMap">
             <map>
-                <entry key="urls" value=""></entry>
+                <entry key="alimentacion" value="#cm-alimentacion .cat-nivel-3 a"></entry>
+                <entry key="animales" value="#cm-animales .cat-nivel-3 a"></entry>
+                <entry key="bebe" value="#cm-bebe .cat-nivel-3 a"></entry>
+                <entry key="congelados" value="#cm-congelados-y-helados .cat-nivel-3 a"></entry>
+                <entry key="cuidado" value="#cm-cuidado-personal .cat-nivel-3 a"></entry>
+                <entry key="dieteticos" value="#cm-dieteticos .cat-nivel-3 a"></entry>
+                <entry key="frescos" value="#cm-frescos .cat-nivel-3 a"></entry>
+                <entry key="hogar" value="#cm-cuidado-del-hogar .cat-nivel-3 a"></entry>
+                <entry key="preparados" value="#cm-platos-preparados .cat-nivel-3 a"></entry>
             </map>
         </property>
-        <property name="durability" value="true"/>
-    </bean>
-
-    <bean name="JobAnimales" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-        <property name="jobClass" value="com.glippy.scrapper.JobAnimales" />
-        <property name="durability" value="true"/>
-    </bean>
-
-    <bean name="JobBebe" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-        <property name="jobClass" value="com.glippy.scrapper.JobBebe" />
-        <property name="durability" value="true"/>
-    </bean>
-
-    <bean name="JobCongelados" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-        <property name="jobClass" value="com.glippy.scrapper.JobCongelados" />
-        <property name="durability" value="true"/>
-    </bean>
-
-    <bean name="JobCuidadosPersonales" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-        <property name="jobClass" value="com.glippy.scrapper.JobCuidadoPersonal" />
-        <property name="durability" value="true"/>
-    </bean>
-
-    <bean name="JobDieteticos" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-        <property name="jobClass" value="com.glippy.scrapper.JobDieteticos" />
-        <property name="durability" value="true"/>
-    </bean>
-
-    <bean name="JobFrescos" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-        <property name="jobClass" value="com.glippy.scrapper.JobFrescos" />
-        <property name="durability" value="true"/>
-    </bean>
-
-    <bean name="JobHogar" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-        <property name="jobClass" value="com.glippy.scrapper.JobHogar" />
-        <property name="durability" value="true"/>
-    </bean>
-
-    <bean name="JobPreparados" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-        <property name="jobClass" value="com.glippy.scrapper.JobPreparados" />
         <property name="durability" value="true"/>
     </bean>
 
     <!-- Cron Trigger, run every 5 seconds -->
     <bean id="cronTriggerJobAlimentacion"
           class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="JobAlimentacion" />
+        <property name="jobDetail" ref="JobCategories" />
         <property name="cronExpression" value="6/59 * * 1/1 * ? *"></property>
     </bean>
 
     <bean id="cronTriggerJobAnimales"
           class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="JobAnimales" />
+        <property name="jobDetail" ref="JobCategories" />
         <property name="cronExpression" value="12/59 * * 1/1 * ? *"></property>
     </bean>
 
     <bean id="cronTriggerJobBebe"
           class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="JobBebe" />
+        <property name="jobDetail" ref="JobCategories" />
         <property name="cronExpression" value="18/59 * * 1/1 * ? *"></property>
     </bean>
 
     <bean id="cronTriggerJobCongelados"
           class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="JobCongelados" />
+        <property name="jobDetail" ref="JobCategories" />
         <property name="cronExpression" value="24/59 * * 1/1 * ? *"></property>
     </bean>
 
     <bean id="cronTriggerJobCuidadoPersonal"
           class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="JobCuidadosPersonales" />
+        <property name="jobDetail" ref="JobCategories" />
         <property name="cronExpression" value="30/59 * * 1/1 * ? *"></property>
     </bean>
 
     <bean id="cronTriggerJobDieteticos"
           class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="JobDieteticos" />
+        <property name="jobDetail" ref="JobCategories" />
         <property name="cronExpression" value="36/59 * * 1/1 * ? *"></property>
     </bean>
 
     <bean id="cronTriggerJobFrescos"
           class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="JobFrescos" />
+        <property name="jobDetail" ref="JobCategories" />
         <property name="cronExpression" value="42/59 * * 1/1 * ? *"></property>
     </bean>
 
     <bean id="cronTriggerJobHogar"
           class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="JobHogar" />
+        <property name="jobDetail" ref="JobCategories" />
         <property name="cronExpression" value="48/59 * * 1/1 * ? *"></property>
     </bean>
 
     <bean id="cronTriggerJobPreparados"
           class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="JobPreparados" />
+        <property name="jobDetail" ref="JobCategories" />
         <property name="cronExpression" value="54/59 * * 1/1 * ? *"></property>
     </bean>
 
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="jobDetails">
             <list>
-                <ref bean="JobAlimentacion"/>
-                <ref bean="JobAnimales"/>
-                <ref bean="JobBebe"/>
-                <ref bean="JobCongelados"/>
-                <ref bean="JobCuidadosPersonales"/>
+                <ref bean="JobCategories"/>
             </list>
         </property>
         <property name="triggers">
