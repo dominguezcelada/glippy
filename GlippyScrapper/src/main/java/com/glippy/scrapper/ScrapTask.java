@@ -52,14 +52,10 @@ public class ScrapTask {
     public ArrayList<String> obtainCategs(String url, String selector) throws IOException {
         Document docCateg = Jsoup.connect(url).get();
         Elements categs = docCateg.select(selector);
-        ArrayList<String> subcategUrls = new ArrayList<String>();
+        ArrayList<String> urls = new ArrayList<String>();
         for(int i = 0; i < categs.size(); i++) {
-           Document docSubCateg = Jsoup.connect("http://carritus.com" + categs.get(i).attr("href")).get();
-           Elements subcats = docSubCateg.select(".column-menu .in .item > a");
-           for(int j = 0; j < subcats.size(); j++) {
-               subcategUrls.add(subcats.get(j).attr("href"));
-           }
+           urls.add("http://carritus.com" + categs.get(i).attr("href"));
         }
-        return subcategUrls;
+        return urls;
     }
 }

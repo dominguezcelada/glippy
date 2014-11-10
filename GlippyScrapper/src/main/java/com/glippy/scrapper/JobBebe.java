@@ -15,13 +15,14 @@ public class JobBebe extends QuartzJobBean {
     public static String examplePostalCode = "08016";
 
     @Override
-    protected void executeInternal(JobExecutionContext arg0)
+    protected void executeInternal(JobExecutionContext context)
             throws JobExecutionException {
         String url = "http://www.carritus.com/tienda/super/" + exampleSuper + "/cp/" + examplePostalCode + "/cm/2811";
         String selector = "#cm-bebe .cat-nivel-3 a";
         try {
             ArrayList<String> urls = scrapTask.obtainCategs(url, selector);
-            System.out.println("JobBebe: " + urls.size());
+            context.getJobDetail().getJobDataMap().put("urls",urls);
+            System.out.println("JobAlimentacion: " + urls.size() + " " + context.getJobDetail().getJobDataMap().get("urls"));
         } catch (IOException e) {
             e.printStackTrace();
         }
