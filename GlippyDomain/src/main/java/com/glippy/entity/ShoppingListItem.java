@@ -11,7 +11,7 @@ public class ShoppingListItem {
     @TextIndexed
     private String description;
 
-    private Float price;
+    private double price;
 
     private String supermarket;
 
@@ -24,35 +24,35 @@ public class ShoppingListItem {
 
     public ShoppingListItem(String itemName) {
         this.name = itemName;
-        this.price =  new Float(0.0);
+        this.price = 0.0;
         this.supermarket = "mercadona";
         this.quantity = 1;
     }
 
     public ShoppingListItem(String itemName, int quantity) {
         this.name = itemName;
-        this.price = new Float(0.0);
+        this.price = 0.0;
         this.supermarket = "mercadona";
         this.quantity = quantity;
     }
 
     public ShoppingListItem(String itemName, double price) {
         this.name = itemName;
-        this.price = new Float(price);
+        this.price = price;
         this.quantity = 1;
         this.supermarket = "mercadona";
     }
 
     public ShoppingListItem(String itemName, double price, String supermarket) {
         this.name = itemName;
-        this.price = new Float(price);
+        this.price = price;
         this.supermarket = supermarket;
         this.quantity = 1;
     }
 
     public ShoppingListItem(String itemName, double price, String supermarket, int quantity) {
         this.name = itemName;
-        this.price = new Float(price);
+        this.price = price;
         this.supermarket = supermarket;
         this.quantity = quantity;
     }
@@ -60,7 +60,7 @@ public class ShoppingListItem {
     public ShoppingListItem(String itemName, String supermarket, double price, int quantity) {
         this.name = itemName;
         this.supermarket = supermarket;
-        this.price = new Float(price);
+        this.price = price;
         this.quantity = quantity;
     }
 
@@ -68,14 +68,14 @@ public class ShoppingListItem {
         this.name = itemName;
         this.quantity = quantity;
         this.supermarket = supermarket;
-        this.price = new Float(price);
+        this.price = price;
     }
 
     public ShoppingListItem(String itemName, String description, String supermarket, double price, int quantity) {
         this.name = itemName;
         this.description = description;
         this.supermarket = supermarket;
-        this.price = new Float(price);
+        this.price = price;
         this.quantity = quantity;
     }
 
@@ -114,10 +114,6 @@ public class ShoppingListItem {
     }
 
     public void setPrice(double price) {
-        this.price = new Float(price);
-    }
-
-    public void setPrice(Float price) {
         this.price = price;
     }
 
@@ -143,7 +139,7 @@ public class ShoppingListItem {
         if (quantity != that.quantity) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (!name.equals(that.name)) return false;
-        if (supermarket != null ? !supermarket.equals(that.supermarket) : that.supermarket != null) return false;
+        if (!supermarket.equals(that.supermarket)) return false;
 
         return true;
     }
@@ -156,11 +152,10 @@ public class ShoppingListItem {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         temp = Double.doubleToLongBits(price);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (supermarket != null ? supermarket.hashCode() : 0);
+        result = 31 * result + supermarket.hashCode();
         result = 31 * result + quantity;
         return result;
     }
-
 
     // Other
 

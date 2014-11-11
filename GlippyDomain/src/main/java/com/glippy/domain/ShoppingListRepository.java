@@ -1,7 +1,6 @@
 package com.glippy.domain;
 
 import com.glippy.entity.ShoppingList;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.data.repository.CrudRepository;
 
@@ -11,12 +10,13 @@ public interface ShoppingListRepository extends CrudRepository<ShoppingList, Str
 
     //Read
     List<ShoppingList> findByName(String name);
-    List<ShoppingList> findByUsername(String shoppingListUserName);
-    List<ShoppingList> findByUsernameAndName(String username, String listName);
     List<ShoppingList> findAllBy(TextCriteria criteria);
+    List<ShoppingList> findByUsername(String shoppingListUserName);
 
     //Delete
     List<ShoppingList> deleteByUsername(String username);
-    List<ShoppingList> deleteByUsernameAndName(String username, String listname);
 
+    List<ShoppingList> findByUsernameAndName(String username, String listName);
+
+    List<ShoppingList> deleteByUsernameAndName(String username, String listname);
 }

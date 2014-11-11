@@ -23,7 +23,7 @@ public class RunMeTask {
             double price = Double.parseDouble(elemPrices.get(i).getElementsByClass("price").text().replace('€', ' ').replace(',', '.'));
             prices.add(new Price(supermarket,price));
         }
-        return new Item("0",name,description,prices);
+        return new Item(name,description,prices);
     }
 
     public ArrayList<Item> scrapCategs(String url, String selector, int level) throws IOException {

@@ -27,6 +27,9 @@ public class ShoppingList {
     @TextIndexed
     private String name;
 
+    @TextScore
+    private Float score;
+
     private List<ShoppingListItem> items = new ArrayList<ShoppingListItem>();
 
     // Constructors
@@ -118,7 +121,6 @@ public class ShoppingList {
         result = 31 * result + (items != null ? items.hashCode() : 0);
         return result;
     }
-
 
 
     // AddItem
