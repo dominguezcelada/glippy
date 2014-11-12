@@ -15,7 +15,6 @@
         <module>GlippyHub</module>
         <module>GlippyShopping</module>
         <module>GlippyScrapper</module>
-        <module>GlippyNative</module>
     </modules>
 
     <properties>
