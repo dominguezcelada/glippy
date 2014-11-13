@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(value = "/shopping")
 public class ShoppingController {
@@ -53,6 +55,16 @@ public class ShoppingController {
         model.addAttribute("shoppingList", shoppingListRepository.findByUsernameAndName(username, listName).get(0));
         return "/shoppingList";
     }
+
+    @RequestMapping(value = {"/users/{username}/{listName}"}, method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public String updateUserShoppingListName(@PathVariable String username, @PathVariable String listName, @RequestBody String newListName) {
+        List<ShoppingList> list = shoppingListRepository.findByUsernameAndName(username, listName);
+        list.get(0).setName(newListName);
+        shoppingListRepository.save(list);
+        return "/shoppingList";
+    }
+
     @RequestMapping(value = {"/users/{username}/{listName}/{itemName}"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public String getUserShoppingListItems(@PathVariable String username, @PathVariable String listName, ModelMap model) {
