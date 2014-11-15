@@ -4,6 +4,11 @@ import com.glippy.domain.ShoppingListRepository;
 import com.glippy.entity.ShoppingList;
 import com.glippy.entity.ShoppingListItem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.BasicQuery;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,6 +21,9 @@ import java.util.List;
 public class ShoppingController {
     @Autowired
     ShoppingListRepository shoppingListRepository;
+
+    @Autowired
+    MongoTemplate mongoTemplate;
 
     // Requets for ALL --- Shopping Lists
 
@@ -60,18 +68,39 @@ public class ShoppingController {
     @ResponseStatus(HttpStatus.OK)
     public String updateUserShoppingListName(@PathVariable String username, @PathVariable String listName, @RequestBody String newListName) {
         List<ShoppingList> list = shoppingListRepository.findByUsernameAndName(username, listName);
-        list.get(0).setName(newListName);
-        shoppingListRepository.save(list);
+        if(list.size() > 0) {
+            list.get(0).setName(newListName);
+            shoppingListRepository.save(list);
+        }
         return "/shoppingList";
     }
 
     @RequestMapping(value = {"/users/{username}/{listName}/{itemName}"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public String getUserShoppingListItems(@PathVariable String username, @PathVariable String listName, ModelMap model) {
-        ShoppingListItem item = shoppingListRepository.findByUsernameAndName(username, listName).get(0).getItems().get(0);
+    public String getUserShoppingListItems(@PathVariable String username, @PathVariable String listName, @PathVariable String itemName, ModelMap model) {
+        List<ShoppingListItem> items = shoppingListRepository.findByUsernameAndName(username, listName).get(0).getItems();
+        ShoppingListItem item = null;
+        boolean found = false;
+        for(int i = 0; i < items.size() && !found; i++) {
+            if(items.get(i).getName().equals(itemName)) {
+                item = items.get(i);
+                found = true;
+            }
+        }
         model.addAttribute("shoppingItem", item);
         model.addAttribute("total", item.getQuantity() * item.getPrice());
         return "/shoppingItem";
+    }
+
+    @RequestMapping(value = {"/users/{username}/{listName}/{itemName}"}, method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public void putUserShoppingListItem(@PathVariable String username, @PathVariable String listName, @PathVariable String itemName, @RequestBody String quantity) {
+        Query querySelect = new Query()
+                .addCriteria(Criteria.where("name").is(listName)
+                .and("username").is(username)
+                .and("items.name").is(itemName));
+        Update queryUpdate = new Update().set("items.$.quantity", Integer.valueOf(quantity));
+        shoppingListRepository.updateQuantity(querySelect, queryUpdate);
     }
 
     @RequestMapping(value = "/users/{username}", method = RequestMethod.DELETE)
