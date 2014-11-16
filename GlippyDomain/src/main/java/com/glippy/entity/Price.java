@@ -1,14 +1,22 @@
 package com.glippy.entity;
 
+import org.springframework.data.mongodb.core.index.TextIndexed;
+
 /**
  * Created by oscar on 03/11/2014.
  */
 public class Price {
+
     private String supermarket;
+
     private double price;
 
 
+    // Constructors
+
     public Price() {
+        this.supermarket = "mercadona";
+        this.price = 0.0;
     }
 
     public Price(double price) {
@@ -19,11 +27,6 @@ public class Price {
     public Price(String supermarket) {
         this.supermarket = supermarket;
         this.price = 0.0;
-    }
-
-    public Price(String supermarket, Float price) {
-        this.supermarket = supermarket;
-        this.price = price;
     }
 
     public Price(String supermarket, double price) {
@@ -43,10 +46,6 @@ public class Price {
     }
 
     public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setPrice(Float price) {
         this.price = price;
     }
 

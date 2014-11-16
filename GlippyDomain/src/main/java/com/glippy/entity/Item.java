@@ -26,7 +26,7 @@ public class Item {
 
     public Item(String itemName) {
         this.name = itemName;
-        this.prices.add(new Price("mercadona",0.0));
+        this.prices.add(new Price());
     }
 
     public Item(String itemName, Price price) {
@@ -57,6 +57,17 @@ public class Item {
 
     public Item() {
 
+    }
+
+    public Item(String itemName, double price) {
+        this.name = itemName;
+        this.prices.add(new Price(price));
+    }
+
+    public Item(String itemName, String description, double price, String supermarket) {
+        this.name = itemName;
+        this.description = description;
+        this.prices.add(new Price(price,supermarket));
     }
 
 

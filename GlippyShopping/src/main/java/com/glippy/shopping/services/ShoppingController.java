@@ -5,7 +5,6 @@ import com.glippy.entity.ShoppingList;
 import com.glippy.entity.ShoppingListItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
@@ -78,17 +77,17 @@ public class ShoppingController {
     @RequestMapping(value = {"/users/{username}/{listName}/{itemName}"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public String getUserShoppingListItems(@PathVariable String username, @PathVariable String listName, @PathVariable String itemName, ModelMap model) {
-        List<ShoppingListItem> items = shoppingListRepository.findByUsernameAndName(username, listName).get(0).getItems();
+        List<ShoppingListItem> items = shoppingListRepository.findByUsernameAndName(username, listName).get(0).getListItems();
         ShoppingListItem item = null;
         boolean found = false;
         for(int i = 0; i < items.size() && !found; i++) {
-            if(items.get(i).getName().equals(itemName)) {
+            if(items.get(i).getItem().getName().equals(itemName)) {
                 item = items.get(i);
                 found = true;
             }
         }
         model.addAttribute("shoppingItem", item);
-        model.addAttribute("total", item.getQuantity() * item.getPrice());
+        model.addAttribute("total", item.getQuantity() * item.getItem().getPrices().get(0).getPrice());
         return "/shoppingItem";
     }
 

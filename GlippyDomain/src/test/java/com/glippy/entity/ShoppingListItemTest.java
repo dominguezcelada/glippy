@@ -1,3 +1,4 @@
+/*
 package com.glippy.entity;
 
 import org.junit.Test;
@@ -76,4 +77,4 @@ public class ShoppingListItemTest {
 
         assertThat(item1, is(equalTo(item2)));
     }
-}
+}*/

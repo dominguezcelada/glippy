@@ -1,47 +1,69 @@
 {
     "name": "Compra Semanal",
     "username": "",
-    "items": [
+    "listItems": [
         {
-            "name":"Coca-Cola",
-            "description":"Bebida refrescante",
-            "price":0.53,
-            "supermarket":"mercadona",
-            "quantity": 6
+            "quantity": 6,
+            "item": {
+                "name": "Coca-Cola",
+                "description": "Bebida refrescante",
+                "prices": [
+                    {
+                        "price": 0.53,
+                        "supermarket": "mercadona"
+                    },
+                    {
+                        "price": 0.54,
+                        "supermarket": "alcampo"
+                    },
+                    {
+                        "price": 0.55,
+                        "supermarket": "condis"
+                    }
+                ]
+            }
         },
         {
-            "name":"Fanta",
-            "description":"Bebida refrescante",
-            "price":0.58,
-            "supermarket":"eroski",
-            "quantity": 6
+            "quantity": 1,
+            "item": {
+                "name": "Galletas",
+                "description": "Merienda",
+                "prices": [
+                    {
+                        "price": 1.53,
+                        "supermarket": "mercadona"
+                    },
+                    {
+                        "price": 2.54,
+                        "supermarket": "alcampo"
+                    },
+                    {
+                        "price": 3.55,
+                        "supermarket": "condis"
+                    }
+                ]
+            }
         },
         {
-            "name":"Bezoya, Pack 6 x 1500cc",
-            "description":"Agua Mineral Natural (Mineralizacion muy debil)",
-            "price":3.18,
-            "supermarket":"mercadona",
-            "quantity": 2
-        },
-        {
-            "name":"Raimat",
-            "description":"Cava Brut Nature",
-            "price":6.15,
-            "supermarket":"mercadona",
-            "quantity": 2
-        },{
-            "name":"Yogures Bifidus Sabores, Hacendado",
-            "description":"Pack 8 x 125 g",
-            "price":1.65,
-            "supermarket":"mercadona",
-            "quantity": 2
-        },
-        {
-            "name":"Leche Desnatada Calcio, Hacendado",
-            "description":"Brick 1l",
-            "price":0.76,
-            "supermarket":"mercadona",
-            "quantity": 3
+            "quantity": 2,
+            "item": {
+                "name": "Fanta",
+                "description": "Bebida refrescante",
+                "prices": [
+                    {
+                        "price": 0.63,
+                        "supermarket": "carrefour"
+                    },
+                    {
+                        "price": 0.74,
+                        "supermarket": "alcampo"
+                    },
+                    {
+                        "price": 0.85,
+                        "supermarket": "mercadona"
+                    }
+                ]
+            }
         }
     ]
 }

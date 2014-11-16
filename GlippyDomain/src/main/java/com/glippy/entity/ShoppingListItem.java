@@ -2,20 +2,15 @@ package com.glippy.entity;
 
 import org.springframework.data.mongodb.core.index.TextIndexed;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class ShoppingListItem {
 
-    @TextIndexed
-    private String name;
-
-    @TextIndexed
-    private String description;
-
-    private double price;
-
-    private String supermarket;
-
     private int quantity;
+    private Item item;
+
 
     // Constructors
 
@@ -23,108 +18,65 @@ public class ShoppingListItem {
     }
 
     public ShoppingListItem(String itemName) {
-        this.name = itemName;
-        this.price = 0.0;
-        this.supermarket = "mercadona";
+        this.item = new Item(itemName);
         this.quantity = 1;
     }
 
     public ShoppingListItem(String itemName, int quantity) {
-        this.name = itemName;
-        this.price = 0.0;
-        this.supermarket = "mercadona";
+        this.item = new Item(itemName);
         this.quantity = quantity;
     }
 
     public ShoppingListItem(String itemName, double price) {
-        this.name = itemName;
-        this.price = price;
+        this.item = new Item(itemName);
         this.quantity = 1;
-        this.supermarket = "mercadona";
     }
 
     public ShoppingListItem(String itemName, double price, String supermarket) {
-        this.name = itemName;
-        this.price = price;
-        this.supermarket = supermarket;
+        this.item = new Item(itemName, price, supermarket);
         this.quantity = 1;
     }
 
     public ShoppingListItem(String itemName, double price, String supermarket, int quantity) {
-        this.name = itemName;
-        this.price = price;
-        this.supermarket = supermarket;
-        this.quantity = quantity;
-    }
-
-    public ShoppingListItem(String itemName, String supermarket, double price, int quantity) {
-        this.name = itemName;
-        this.supermarket = supermarket;
-        this.price = price;
+        this.item = new Item(itemName, price, supermarket);
         this.quantity = quantity;
     }
 
     public ShoppingListItem(String itemName, int quantity, String supermarket, double price) {
-        this.name = itemName;
+        this.item = new Item(itemName, price, supermarket);
         this.quantity = quantity;
-        this.supermarket = supermarket;
-        this.price = price;
+    }
+
+    public ShoppingListItem(String itemName, String supermarket, double price, int quantity) {
+        this.item = new Item(itemName, price, supermarket);
+        this.quantity = quantity;
     }
 
     public ShoppingListItem(String itemName, String description, String supermarket, double price, int quantity) {
-        this.name = itemName;
-        this.description = description;
-        this.supermarket = supermarket;
-        this.price = price;
+        this.item = new Item(itemName, price, supermarket);
         this.quantity = quantity;
     }
 
 
     // Getters
 
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public String getSupermarket() {
-        return supermarket;
-    }
-
     public int getQuantity() {
         return quantity;
     }
 
+    public Item getItem() {
+        return item;
+    }
 
     //Setters
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setSupermarket(String supermarket) {
-        this.supermarket = supermarket;
-    }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
+    public void setItem(Item item) {
+        this.item = item;
+    }
 
     //Equals & Hashcode
 
@@ -135,27 +87,19 @@ public class ShoppingListItem {
 
         ShoppingListItem that = (ShoppingListItem) o;
 
-        if (Double.compare(that.price, price) != 0) return false;
         if (quantity != that.quantity) return false;
-        if (description != null ? !description.equals(that.description) : that.description != null) return false;
-        if (!name.equals(that.name)) return false;
-        if (!supermarket.equals(that.supermarket)) return false;
+        if (item != null ? !item.equals(that.item) : that.item != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = name.hashCode();
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        temp = Double.doubleToLongBits(price);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + supermarket.hashCode();
-        result = 31 * result + quantity;
+        int result = quantity;
+        result = 31 * result + (item != null ? item.hashCode() : 0);
         return result;
     }
+
 
     // Other
 

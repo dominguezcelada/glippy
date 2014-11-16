@@ -4,7 +4,11 @@
 <c:forEach items="${shoppingItems}" var="shoppingItem">
     <li>${shoppingItem.name}</li>
     <li>${shoppingItem.quantity}</li>
-    <li>${shoppingItem.supermarket}</li>
-    <li>${shoppingItem.price}</li>
+    <ul>
+    <c:forEach items="${shoppingItem.listItems}" var="item">
+        <li>${item.price}</li>
+        <li>${item.supermarket}</li>
+    </c:forEach>
+    </ul>
 </c:forEach>
 </ul>

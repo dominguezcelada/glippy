@@ -30,13 +30,13 @@ public class ShoppingList {
     @TextScore
     private Float score;
 
-    private List<ShoppingListItem> items = new ArrayList<ShoppingListItem>();
+    private List<ShoppingListItem> listItems = new ArrayList<ShoppingListItem>();
 
     // Constructors
 
     public ShoppingList(String name, List<ShoppingListItem> items) {
         this.name = name;
-        this.items = items;
+        this.listItems = items;
     }
 
     public ShoppingList(String name) {
@@ -45,17 +45,17 @@ public class ShoppingList {
 
     public ShoppingList(String name, ShoppingListItem shoppingListItem) {
         this.name = name;
-        this.items.add(shoppingListItem);
+        this.listItems.add(shoppingListItem);
     }
 
     public ShoppingList(String name, String itemName, double price, String supermarket, int quantity) {
         this.name = name;
-        this.items.add(new ShoppingListItem(itemName,price,supermarket,quantity));
+        this.listItems.add(new ShoppingListItem(itemName, price, supermarket, quantity));
     }
 
     public ShoppingList(String name, String itemName, String supermarket, int quantity, double price) {
         this.name = name;
-        this.items.add(new ShoppingListItem(itemName,price,supermarket,quantity));
+        this.listItems.add(new ShoppingListItem(itemName, price, supermarket, quantity));
     }
 
     public ShoppingList() {
@@ -82,8 +82,8 @@ public class ShoppingList {
         return username;
     }
 
-    public List<ShoppingListItem> getItems() {
-        return items;
+    public List<ShoppingListItem> getListItems() {
+        return listItems;
     }
 
     //Setters
@@ -106,7 +106,7 @@ public class ShoppingList {
         ShoppingList that = (ShoppingList) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (items != null ? !items.equals(that.items) : that.items != null) return false;
+        if (listItems != null ? !listItems.equals(that.listItems) : that.listItems != null) return false;
         if (!name.equals(that.name)) return false;
         if (username != null ? !username.equals(that.username) : that.username != null) return false;
 
@@ -118,7 +118,7 @@ public class ShoppingList {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + name.hashCode();
-        result = 31 * result + (items != null ? items.hashCode() : 0);
+        result = 31 * result + (listItems != null ? listItems.hashCode() : 0);
         return result;
     }
 
@@ -126,27 +126,27 @@ public class ShoppingList {
     // AddItem
 
     public ShoppingList addItem(String itemName) {
-        this.items.add(new ShoppingListItem(itemName,0.0,"mercadona",1));
+        this.listItems.add(new ShoppingListItem(itemName, 0.0, "mercadona", 1));
         return this;
     }
 
     public ShoppingList addItem(String itemName, int quantity) {
-        this.items.add(new ShoppingListItem(itemName,0.0,"mercadona",quantity));
+        this.listItems.add(new ShoppingListItem(itemName, 0.0, "mercadona", quantity));
         return this;
     }
 
     public ShoppingList addItem(String itemName, double price) {
-        this.items.add(new ShoppingListItem(itemName,price,"mercadona",1));
+        this.listItems.add(new ShoppingListItem(itemName, price, "mercadona", 1));
         return this;
     }
 
     public ShoppingList addItem(String itemName, double price, String supermarket) {
-        this.items.add(new ShoppingListItem(itemName,price,supermarket,1));
+        this.listItems.add(new ShoppingListItem(itemName, price, supermarket, 1));
         return this;
     }
 
     public ShoppingList addItem(String itemName, double price, String supermarket, int quantity) {
-        this.items.add(new ShoppingListItem(itemName,price,supermarket,quantity));
+        this.listItems.add(new ShoppingListItem(itemName, price, supermarket, quantity));
         return this;
     }
 }
