@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.index.TextIndexed;
  */
 public class Price {
 
-    private String supermarket = "mercadona"; // By default
+    private String supermarket = "Mercadona"; // By default
 
     private double price = 0.0; // By default
 
