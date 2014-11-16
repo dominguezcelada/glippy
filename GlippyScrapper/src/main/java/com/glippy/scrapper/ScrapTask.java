@@ -1,19 +1,33 @@
 package com.glippy.scrapper;
 
 import com.glippy.domain.ItemRepository;
+import com.glippy.domain.ShoppingListRepository;
 import com.glippy.entity.Item;
 import com.glippy.entity.Price;
+import com.glippy.entity.ShoppingList;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
+@Service
+@Component
+@ContextConfiguration("/ScrapTask-context.xml")
 public class ScrapTask {
 
-    private ItemRepository itemRepository;
+    AbstractApplicationContext context = new ClassPathXmlApplicationContext("ScrapTask-context.xml");
+    ItemRepository itemRepository = context.getBean(ItemRepository.class);
+
+    @Autowired
+    private ShoppingListRepository shoppingListRepository;
 
     public ScrapTask() {
     }
@@ -29,7 +43,9 @@ public class ScrapTask {
             double price = Double.parseDouble(elemPrices.get(i).getElementsByClass("price").text().replace('€', ' ').replace(',', '.'));
             prices.add(new Price(supermarket,price));
         }
-        return new Item(name,description,prices);
+        Item item = new Item(name, description, prices);
+        itemRepository.save(item);
+        return item;
     }
 
     public ArrayList<Item> scrapCategs(String url, String selector, int level) throws IOException {

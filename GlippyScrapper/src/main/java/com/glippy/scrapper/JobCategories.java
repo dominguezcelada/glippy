@@ -1,5 +1,6 @@
 package com.glippy.scrapper;
 
+import com.glippy.entity.Item;
 import org.joda.time.DateTime;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,7 +22,7 @@ public class JobCategories extends QuartzJobBean {
     @Override
     protected void executeInternal(JobExecutionContext context)
             throws JobExecutionException {
-        String url = "http://www.carritus.com/tienda/super/" + exampleSuper + "/cp/" + examplePostalCode + "/cm/2811";
+        /*String url = "http://www.carritus.com/tienda/super/" + exampleSuper + "/cp/" + examplePostalCode + "/cm/2811";
         DateTime dateTime = new DateTime(context.getFireTime().getTime());
 
         String key;
@@ -54,12 +55,12 @@ public class JobCategories extends QuartzJobBean {
             default:
                 key = "alimentacion";
                 break;
-        }
-        String selector = (String) context.getJobDetail().getJobDataMap().get(key);
+        }*/
+//        String selector = (String) context.getJobDetail().getJobDataMap().get(key);
         try {
-            ArrayList<String> urls = scrapTask.obtainCategs(url, selector);
-            context.getJobDetail().getJobDataMap().put(key,urls);
-            System.out.println(key + ": " + urls.size() + " " + context.getJobDetail().getJobDataMap().get(key));
+            ArrayList<Item> items = scrapTask.scrapCategs("http://www.carritus.com/tienda/super/" + exampleSuper + "/cp/" + examplePostalCode + "/cm/1731", ".content .item .image a", 0);
+//            context.getJobDetail().getJobDataMap().put(key,urls);
+//            System.out.println(key + ": " + urls.size() + " " + context.getJobDetail().getJobDataMap().get(key));
         } catch (IOException e) {
             e.printStackTrace();
         }
