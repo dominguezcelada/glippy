@@ -1,13 +1,27 @@
 {
     "name": "list2",
+    "username": "",
     "items": [
         {
-            "name": "Coca-cola",
-            "quantity": 6
+            "name":"Galletas Principe",
+            "description":"Cookies de chocolate",
+            "price":2.75,
+            "supermarket":"carrefour",
+            "quantity": 1
         },
         {
-            "name":"Cookies",
-            "quantity":20
+            "name":"Orange Juice",
+            "description":"Bebida refrescante",
+            "price":1.33,
+            "supermarket":"carrefour",
+            "quantity": 4
+        },
+        {
+            "name":"Coffee",
+            "description":"Cafés",
+            "price":1.10,
+            "supermarket":"carrefour",
+            "quantity": 1
         }
     ]
 }

@@ -5,12 +5,30 @@ import com.glippy.entity.Price;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class RunMeTask {
+@Service
+@Component
+@ContextConfiguration("/ScrapTask-context.xml")
+public class ScrapTask {
+
+    AbstractApplicationContext context = new ClassPathXmlApplicationContext("ScrapTask-context.xml");
+    ItemRepository itemRepository = context.getBean(ItemRepository.class);
+
+    @Autowired
+    private ShoppingListRepository shoppingListRepository;
+
+    public ScrapTask() {
+    }
 
     public Item scrapItem(String url) throws IOException {
         Document doc = Jsoup.connect(url).get();
@@ -23,12 +41,13 @@ public class RunMeTask {
             double price = Double.parseDouble(elemPrices.get(i).getElementsByClass("price").text().replace('€', ' ').replace(',', '.'));
             prices.add(new Price(supermarket,price));
         }
-        return new Item(name,description,prices);
+        Item item = new Item(name, description, prices);
+        itemRepository.save(item);
+        return item;
     }
 
     public ArrayList<Item> scrapCategs(String url, String selector, int level) throws IOException {
         Document doc = Jsoup.connect(url).timeout(999999999).get();
-//        System.out.println("Category: " + url + "\n");
         Elements categs = doc.select(selector);
         ArrayList<Item> listItems = new ArrayList<Item>();
         for(int i = 0; i < categs.size(); i++) {
@@ -44,20 +63,15 @@ public class RunMeTask {
         return listItems;
     }
 
-    public ArrayList<String> scrapCategUrls(String url, String selector, int level) throws IOException {
-        Document doc = Jsoup.connect(url).timeout(999999999).get();
-//        System.out.println("Category: " + url + "\n");
-        Elements categs = doc.select(selector);
-        ArrayList<String> listURLs = new ArrayList<String>();
+    public ArrayList<String> obtainCategs(String url, String selector) throws IOException {
+        Document docCateg = Jsoup.connect(url).get();
+        Elements categs = docCateg.select(selector);
+        ArrayList<String> urls = new ArrayList<String>();
         for(int i = 0; i < categs.size(); i++) {
-            if(level == 2) {
-                scrapCategUrls("http://www.carritus.com" + categs.get(i).attr("href"), ".column-menu .in .item > a", level - 1);
-            } else if(level == 1) {
-                listURLs.addAll(scrapCategUrls("http://www.carritus.com" + categs.get(i).attr("href"), ".content .item .image a", level - 1));
-            } else {
-                return listURLs;
-            }
+           urls.add("http://carritus.com" + categs.get(i).attr("href"));
         }
-        return listURLs;
+        return urls;
     }
+
+
 }

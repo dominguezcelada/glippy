@@ -1,0 +1,103 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="jobCategories" class="com.glippy.scrapper.JobCategories" />
+
+    <!-- Quartz Jobs -->
+    <bean name="JobCategories" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.glippy.scrapper.JobCategories" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="alimentacion" value="#cm-alimentacion .cat-nivel-3 a"></entry>
+                <entry key="animales" value="#cm-animales .cat-nivel-3 a"></entry>
+                <entry key="bebe" value="#cm-bebe .cat-nivel-3 a"></entry>
+                <entry key="congelados" value="#cm-congelados-y-helados .cat-nivel-3 a"></entry>
+                <entry key="cuidado" value="#cm-cuidado-personal .cat-nivel-3 a"></entry>
+                <entry key="dieteticos" value="#cm-dieteticos .cat-nivel-3 a"></entry>
+                <entry key="frescos" value="#cm-frescos .cat-nivel-3 a"></entry>
+                <entry key="hogar" value="#cm-cuidado-del-hogar .cat-nivel-3 a"></entry>
+                <entry key="preparados" value="#cm-platos-preparados .cat-nivel-3 a"></entry>
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+    </bean>
+
+    <!-- Cron Trigger, run every 5 seconds -->
+    <bean id="cronTriggerJobAlimentacion"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="JobCategories" />
+        <property name="cronExpression" value="6/59 * * 1/1 * ? *"></property>
+    </bean>
+
+    <bean id="cronTriggerJobAnimales"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="JobCategories" />
+        <property name="cronExpression" value="12/59 * * 1/1 * ? *"></property>
+    </bean>
+
+    <bean id="cronTriggerJobBebe"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="JobCategories" />
+        <property name="cronExpression" value="18/59 * * 1/1 * ? *"></property>
+    </bean>
+
+    <bean id="cronTriggerJobCongelados"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="JobCategories" />
+        <property name="cronExpression" value="24/59 * * 1/1 * ? *"></property>
+    </bean>
+
+    <bean id="cronTriggerJobCuidadoPersonal"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="JobCategories" />
+        <property name="cronExpression" value="30/59 * * 1/1 * ? *"></property>
+    </bean>
+
+    <bean id="cronTriggerJobDieteticos"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="JobCategories" />
+        <property name="cronExpression" value="36/59 * * 1/1 * ? *"></property>
+    </bean>
+
+    <bean id="cronTriggerJobFrescos"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="JobCategories" />
+        <property name="cronExpression" value="42/59 * * 1/1 * ? *"></property>
+    </bean>
+
+    <bean id="cronTriggerJobHogar"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="JobCategories" />
+        <property name="cronExpression" value="48/59 * * 1/1 * ? *"></property>
+    </bean>
+
+    <bean id="cronTriggerJobPreparados"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="JobCategories" />
+        <property name="cronExpression" value="54/59 * * 1/1 * ? *"></property>
+    </bean>
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobDetails">
+            <list>
+                <ref bean="JobCategories"/>
+            </list>
+        </property>
+        <property name="triggers">
+            <list>
+                <ref bean="cronTriggerJobAlimentacion" />
+                <ref bean="cronTriggerJobAnimales" />
+                <ref bean="cronTriggerJobBebe" />
+                <ref bean="cronTriggerJobCongelados" />
+                <ref bean="cronTriggerJobCuidadoPersonal" />
+                <ref bean="cronTriggerJobDieteticos" />
+                <ref bean="cronTriggerJobFrescos" />
+                <ref bean="cronTriggerJobHogar" />
+                <ref bean="cronTriggerJobPreparados" />
+            </list>
+        </property>
+    </bean>
+
+</beans>
