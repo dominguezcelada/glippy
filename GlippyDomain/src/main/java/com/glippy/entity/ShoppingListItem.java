@@ -9,7 +9,8 @@ import java.util.List;
 public class ShoppingListItem {
 
     private int quantity = 1; // By default
-    private String selectedSupermarket = "mercadona"; // By default
+    private String selectedSupermarket = "Mercadona"; // By default
+    private boolean checked = false; // By default an item is not checked
     private Item item;
 
 
@@ -59,6 +60,12 @@ public class ShoppingListItem {
         this.item = new Item(itemName, description);
     }
 
+    public ShoppingListItem(int quantity, String selectedSupermarket, boolean checked, Item item) {
+        this.quantity = quantity;
+        this.selectedSupermarket = selectedSupermarket;
+        this.checked = checked;
+        this.item = item;
+    }
 
     // Getters
 
@@ -72,6 +79,10 @@ public class ShoppingListItem {
 
     public Item getItem() {
         return item;
+    }
+
+    public boolean isChecked() {
+        return checked;
     }
 
     //Setters
@@ -88,6 +99,10 @@ public class ShoppingListItem {
         this.item = item;
     }
 
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
+
     //Equals & Hashcode
 
     @Override
@@ -97,6 +112,7 @@ public class ShoppingListItem {
 
         ShoppingListItem that = (ShoppingListItem) o;
 
+        if (checked != that.checked) return false;
         if (quantity != that.quantity) return false;
         if (item != null ? !item.equals(that.item) : that.item != null) return false;
         if (selectedSupermarket != null ? !selectedSupermarket.equals(that.selectedSupermarket) : that.selectedSupermarket != null)
@@ -109,6 +125,7 @@ public class ShoppingListItem {
     public int hashCode() {
         int result = quantity;
         result = 31 * result + (selectedSupermarket != null ? selectedSupermarket.hashCode() : 0);
+        result = 31 * result + (checked ? 1 : 0);
         result = 31 * result + (item != null ? item.hashCode() : 0);
         return result;
     }
