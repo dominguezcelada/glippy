@@ -7,43 +7,34 @@ import org.springframework.data.mongodb.core.index.TextIndexed;
  */
 public class Price {
 
-    private String supermarket;
+    private String supermarket = "mercadona"; // By default
 
-    private double price;
+    private double price = 0.0; // By default
 
-    private boolean selected;
+    private boolean selected = false; // By default
 
 
     // Constructors
 
     public Price() {
-        this.supermarket = "mercadona";
-        this.price = 0.0;
-        this.selected = false; //By default anyone is selected
     }
 
     public Price(double price) {
-        this.supermarket = "mercadona";
         this.price = price;
-        this.selected = false; //By default anyone is selected
     }
 
     public Price(String supermarket) {
         this.supermarket = supermarket;
-        this.price = 0.0;
-        this.selected = false;
     }
 
     public Price(String supermarket, double price) {
         this.supermarket = supermarket;
         this.price = price;
-        this.selected = false;
     }
 
     public Price(double price, String supermarket) {
         this.supermarket = supermarket;
         this.price = price;
-        this.selected = false;
     }
 
     public Price(String supermarket, double price, boolean selected) {

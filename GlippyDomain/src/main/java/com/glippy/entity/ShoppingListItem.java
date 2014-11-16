@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ShoppingListItem {
 
-    private int quantity;
+    private int quantity = 1; // By default
     private Item item;
 
 
@@ -19,7 +19,6 @@ public class ShoppingListItem {
 
     public ShoppingListItem(String itemName) {
         this.item = new Item(itemName);
-        this.quantity = 1;
     }
 
     public ShoppingListItem(String itemName, int quantity) {
@@ -29,12 +28,10 @@ public class ShoppingListItem {
 
     public ShoppingListItem(String itemName, double price) {
         this.item = new Item(itemName);
-        this.quantity = 1;
     }
 
     public ShoppingListItem(String itemName, double price, String supermarket) {
         this.item = new Item(itemName, price, supermarket);
-        this.quantity = 1;
     }
 
     public ShoppingListItem(String itemName, double price, String supermarket, int quantity) {

@@ -1,34 +1,54 @@
 {
-    "name": "list3",
+    "name": "Fiesta",
     "username": "",
-    "items": [
+    "listItems": [
         {
-            "name":"Coca-Cola 2L.",
-            "description":"Bebida refrescante",
-            "price":1.53,
-            "supermarket":"dia",
-            "quantity": 1
+            "item" : {
+                "name":"Coca-Cola 2L.",
+                "description":"Bebida refrescante",
+                "prices" : [
+                    {
+                        "supermarket":"dia",
+                        "price":1.53
+                    }
+                ]
+            }
         },
         {
-            "name":"Hielo",
-            "description":"",
-            "price":1.5,
-            "supermarket":"dia",
+            "item" : {
+                "name":"Hielo",
+                "prices" : [
+                    {
+                        "supermarket":"dia",
+                        "price":1.5
+                    }
+                ]
+            },
             "quantity": 2
         },
         {
-            "name":"Vasos de plástico",
-            "description":"",
-            "price":1.23,
-            "supermarket":"dia",
+            "item" : {
+                "name":"Vasos de plástico",
+                "prices" : [
+                    {
+                        "supermarket":"dia",
+                        "price":1.23
+                    }
+                ]
+            },
             "quantity": 4
         },
         {
-            "name":"Ron Barceló",
-            "description":"Alcohol",
-            "price":15.23,
-            "supermarket":"dia",
-            "quantity": 1
+            "item" : {
+                "name":"Ron Barceló",
+                "description":"Alcohol",
+                "prices" : [
+                    {
+                        "supermarket":"dia",
+                        "price":15.23
+                    }
+                ]
+            }
         }
     ]
 }
