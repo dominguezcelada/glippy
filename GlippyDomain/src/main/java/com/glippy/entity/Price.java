@@ -11,9 +11,6 @@ public class Price {
 
     private double price = 0.0; // By default
 
-    private boolean selected = false; // By default
-
-
     // Constructors
 
     public Price() {
@@ -40,7 +37,6 @@ public class Price {
     public Price(String supermarket, double price, boolean selected) {
         this.supermarket = supermarket;
         this.price = price;
-        this.selected = selected;
     }
 
     // Setters
@@ -53,9 +49,6 @@ public class Price {
         this.price = price;
     }
 
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
 
     // Getters
 
@@ -67,9 +60,6 @@ public class Price {
         return price;
     }
 
-    public boolean isSelected() {
-        return selected;
-    }
 
     // Equals
 
@@ -82,7 +72,6 @@ public class Price {
         Price price1 = (Price) o;
 
         if (Double.compare(price1.price, price) != 0) return false;
-        if (selected != price1.selected) return false;
         if (supermarket != null ? !supermarket.equals(price1.supermarket) : price1.supermarket != null) return false;
 
         return true;
@@ -95,7 +84,6 @@ public class Price {
         result = supermarket != null ? supermarket.hashCode() : 0;
         temp = Double.doubleToLongBits(price);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (selected ? 1 : 0);
         return result;
     }
 }

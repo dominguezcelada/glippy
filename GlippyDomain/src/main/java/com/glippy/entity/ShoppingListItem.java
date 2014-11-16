@@ -9,6 +9,7 @@ import java.util.List;
 public class ShoppingListItem {
 
     private int quantity = 1; // By default
+    private String selectedSupermarket = "mercadona"; // By default
     private Item item;
 
 
@@ -65,6 +66,10 @@ public class ShoppingListItem {
         return quantity;
     }
 
+    public String getSelectedSupermarket() {
+        return selectedSupermarket;
+    }
+
     public Item getItem() {
         return item;
     }
@@ -73,6 +78,10 @@ public class ShoppingListItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public void setSelectedSupermarket(String selectedSupermarket) {
+        this.selectedSupermarket = selectedSupermarket;
     }
 
     public void setItem(Item item) {
@@ -90,6 +99,8 @@ public class ShoppingListItem {
 
         if (quantity != that.quantity) return false;
         if (item != null ? !item.equals(that.item) : that.item != null) return false;
+        if (selectedSupermarket != null ? !selectedSupermarket.equals(that.selectedSupermarket) : that.selectedSupermarket != null)
+            return false;
 
         return true;
     }
@@ -97,6 +108,7 @@ public class ShoppingListItem {
     @Override
     public int hashCode() {
         int result = quantity;
+        result = 31 * result + (selectedSupermarket != null ? selectedSupermarket.hashCode() : 0);
         result = 31 * result + (item != null ? item.hashCode() : 0);
         return result;
     }

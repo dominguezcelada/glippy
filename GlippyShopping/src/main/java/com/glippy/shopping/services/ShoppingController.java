@@ -120,7 +120,7 @@ public class ShoppingController {
         model.addAttribute("shoppingItem", item);
         int total = 0;
         for (int i = 0; i < item.getItem().getPrices().size(); i++) {
-            if(item.getItem().getPrices().get(i).isSelected()) total = (int) (item.getQuantity() * item.getItem().getPrices().get(i).getPrice());
+            if(item.getItem().getPrices().get(i).getSupermarket().equals(item.getSelectedSupermarket())) total = (int) (item.getQuantity() * item.getItem().getPrices().get(i).getPrice());
         }
         model.addAttribute("total", total);
         return "/shoppingItem";
@@ -134,6 +134,18 @@ public class ShoppingController {
                 .and("username").is(username)
                 .and("listItems.item.name").is(itemName));
         Update queryUpdate = new Update().set("listItems.$.quantity", Integer.valueOf(quantity));
+        shoppingListRepository.updateQuantity(querySelect, queryUpdate);
+    }
+
+    @RequestMapping(value = {"/users/{username}/{listName}/{itemName}/price"}, method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public void editSelectedPriceUserShoppingListItem(@PathVariable String username, @PathVariable String listName, @PathVariable String itemName, @RequestBody String newSupermarket) {
+        Query querySelect = new Query()
+                .addCriteria(Criteria.where("name").is(listName)
+                        .and("username").is(username)
+                        .and("listItems.item.name").is(itemName)
+                        .and("listItems.item.prices.supermarket").is(newSupermarket));
+        Update queryUpdate = new Update().set("listItems.$.item.prices.selected", false);
         shoppingListRepository.updateQuantity(querySelect, queryUpdate);
     }
 
