@@ -126,22 +126,22 @@ public class ShoppingList {
     // AddItem
 
     public ShoppingList addItem(String itemName) {
-        this.listItems.add(new ShoppingListItem(itemName, 0.0, "mercadona", 1));
+        this.listItems.add(new ShoppingListItem(itemName));
         return this;
     }
 
     public ShoppingList addItem(String itemName, int quantity) {
-        this.listItems.add(new ShoppingListItem(itemName, 0.0, "mercadona", quantity));
+        this.listItems.add(new ShoppingListItem(itemName, quantity));
         return this;
     }
 
     public ShoppingList addItem(String itemName, double price) {
-        this.listItems.add(new ShoppingListItem(itemName, price, "mercadona", 1));
+        this.listItems.add(new ShoppingListItem(itemName, price));
         return this;
     }
 
     public ShoppingList addItem(String itemName, double price, String supermarket) {
-        this.listItems.add(new ShoppingListItem(itemName, price, supermarket, 1));
+        this.listItems.add(new ShoppingListItem(itemName, price, supermarket));
         return this;
     }
 
