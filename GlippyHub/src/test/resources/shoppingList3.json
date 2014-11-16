@@ -8,7 +8,7 @@
                 "description":"Bebida refrescante",
                 "prices" : [
                     {
-                        "supermarket":"dia",
+                        "supermarket":"Dia",
                         "price":1.53
                     }
                 ]
@@ -19,7 +19,7 @@
                 "name":"Hielo",
                 "prices" : [
                     {
-                        "supermarket":"dia",
+                        "supermarket":"Dia",
                         "price":1.5
                     }
                 ]
@@ -31,7 +31,7 @@
                 "name":"Vasos de plastico",
                 "prices" : [
                     {
-                        "supermarket":"dia",
+                        "supermarket":"Dia",
                         "price":1.23
                     }
                 ]
@@ -44,7 +44,7 @@
                 "description":"Alcohol",
                 "prices" : [
                     {
-                        "supermarket":"dia",
+                        "supermarket":"Dia",
                         "price":15.23
                     }
                 ]

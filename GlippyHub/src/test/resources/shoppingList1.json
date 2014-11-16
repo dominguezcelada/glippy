@@ -10,15 +10,15 @@
                 "prices": [
                     {
                         "price": 0.53,
-                        "supermarket": "mercadona"
+                        "supermarket": "Mercadona"
                     },
                     {
                         "price": 0.54,
-                        "supermarket": "alcampo"
+                        "supermarket": "Alcampo"
                     },
                     {
                         "price": 0.55,
-                        "supermarket": "condis"
+                        "supermarket": "Condis"
                     }
                 ]
             }
@@ -31,15 +31,15 @@
                 "prices": [
                     {
                         "price": 1.53,
-                        "supermarket": "mercadona"
+                        "supermarket": "Mercadona"
                     },
                     {
                         "price": 2.54,
-                        "supermarket": "alcampo"
+                        "supermarket": "Alcampo"
                     },
                     {
                         "price": 3.55,
-                        "supermarket": "condis"
+                        "supermarket": "Condis"
                     }
                 ]
             }
@@ -52,15 +52,15 @@
                 "prices": [
                     {
                         "price": 0.63,
-                        "supermarket": "carrefour"
+                        "supermarket": "Carrefour"
                     },
                     {
                         "price": 0.74,
-                        "supermarket": "alcampo"
+                        "supermarket": "Alcampo"
                     },
                     {
                         "price": 0.85,
-                        "supermarket": "mercadona"
+                        "supermarket": "Mercadona"
                     }
                 ]
             }
