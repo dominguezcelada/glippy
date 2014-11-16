@@ -143,9 +143,8 @@ public class ShoppingController {
         Query querySelect = new Query()
                 .addCriteria(Criteria.where("name").is(listName)
                         .and("username").is(username)
-                        .and("listItems.item.name").is(itemName)
-                        .and("listItems.item.prices.supermarket").is(newSupermarket));
-        Update queryUpdate = new Update().set("listItems.$.item.prices.selected", false);
+                        .and("listItems.item.name").is(itemName));
+        Update queryUpdate = new Update().set("listItems.$.selectedSupermarket", newSupermarket);
         shoppingListRepository.updateQuantity(querySelect, queryUpdate);
     }
 
