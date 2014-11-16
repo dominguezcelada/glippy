@@ -24,7 +24,9 @@ public class ShoppingController {
     @Autowired
     MongoTemplate mongoTemplate;
 
+    //
     // Requets for ALL --- Shopping Lists
+    //
 
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
@@ -40,7 +42,10 @@ public class ShoppingController {
     }
 
 
+
+    //
     // Requests BY USERNAME --- Shopping Lists
+    //
 
     @RequestMapping(value = {"/users/{username}"}, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
@@ -51,10 +56,23 @@ public class ShoppingController {
 
     @RequestMapping(value = {"/users/{username}"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public String getUserShoppingLists(@PathVariable String username, ModelMap model) {
+    public String getAllUserShoppingLists(@PathVariable String username, ModelMap model) {
         model.addAttribute("shoppingLists", shoppingListRepository.findByUsername(username));
         return "/allShoppingLists";
     }
+
+    @RequestMapping(value = "/users/{username}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteAllUserShoppingLists(@PathVariable String username) {
+        shoppingListRepository.deleteByUsername(username);
+    }
+
+
+
+
+    //
+    // Requests BY USERNAME --- SELECTED Shopping List
+    //
 
     @RequestMapping(value = {"/users/{username}/{listName}"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
@@ -74,6 +92,19 @@ public class ShoppingController {
         return "/shoppingList";
     }
 
+    @RequestMapping(value = "/users/{username}/{listName}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteUserShoppingList(@PathVariable String username,@PathVariable String listName) {
+        shoppingListRepository.deleteByUsernameAndName(username, listName);
+    }
+
+
+
+
+    //
+    // Requests BY USERNAME --- SELECTED Item in Shoppping List
+    //
+
     @RequestMapping(value = {"/users/{username}/{listName}/{itemName}"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public String getUserShoppingListItems(@PathVariable String username, @PathVariable String listName, @PathVariable String itemName, ModelMap model) {
@@ -87,31 +118,34 @@ public class ShoppingController {
             }
         }
         model.addAttribute("shoppingItem", item);
-        model.addAttribute("total", item.getQuantity() * item.getItem().getPrices().get(0).getPrice());
+        int total = 0;
+        for (int i = 0; i < item.getItem().getPrices().size(); i++) {
+            if(item.getItem().getPrices().get(i).isSelected()) total = (int) (item.getQuantity() * item.getItem().getPrices().get(i).getPrice());
+        }
+        model.addAttribute("total", total);
         return "/shoppingItem";
     }
 
     @RequestMapping(value = {"/users/{username}/{listName}/{itemName}"}, method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void putUserShoppingListItem(@PathVariable String username, @PathVariable String listName, @PathVariable String itemName, @RequestBody String quantity) {
+    public void editQuantityUserShoppingListItem(@PathVariable String username, @PathVariable String listName, @PathVariable String itemName, @RequestBody String quantity) {
         Query querySelect = new Query()
                 .addCriteria(Criteria.where("name").is(listName)
                 .and("username").is(username)
-                .and("items.name").is(itemName));
-        Update queryUpdate = new Update().set("items.$.quantity", Integer.valueOf(quantity));
+                .and("listItems.item.name").is(itemName));
+        Update queryUpdate = new Update().set("listItems.$.quantity", Integer.valueOf(quantity));
         shoppingListRepository.updateQuantity(querySelect, queryUpdate);
     }
 
-    @RequestMapping(value = "/users/{username}", method = RequestMethod.DELETE)
+    @RequestMapping(value = {"/users/{username}/{listName}/{itemName}"}, method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deleteUserShoppingLists(@PathVariable String username) {
-        shoppingListRepository.deleteByUsername(username);
-    }
-
-    @RequestMapping(value = "/users/{username}/{listName}", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.OK)
-    public void deleteUserShoppingLists(@PathVariable String username,@PathVariable String listName) {
-        shoppingListRepository.deleteByUsernameAndName(username, listName);
+    public void removeItemFromUserShoppingListItem(@PathVariable String username, @PathVariable String listName, @PathVariable String itemName) {
+        Query querySelect = new Query()
+                .addCriteria(Criteria.where("name").is(listName)
+                        .and("username").is(username)
+                        .and("listItems.item.name").is(itemName));
+        Update queryUpdate = new Update().pull("listItems", new Query().addCriteria(Criteria.where("item.name").is(itemName)));
+        shoppingListRepository.updateQuantity(querySelect, queryUpdate);
     }
 
 

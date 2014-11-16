@@ -4,7 +4,7 @@
     "listItems": [
         {
             "item" : {
-                "name":"Coca-Cola 2L.",
+                "name":"Coca-Cola 2L",
                 "description":"Bebida refrescante",
                 "prices" : [
                     {
@@ -28,7 +28,7 @@
         },
         {
             "item" : {
-                "name":"Vasos de plástico",
+                "name":"Vasos de plastico",
                 "prices" : [
                     {
                         "supermarket":"dia",
@@ -40,7 +40,7 @@
         },
         {
             "item" : {
-                "name":"Ron Barceló",
+                "name":"Ron Barcelo",
                 "description":"Alcohol",
                 "prices" : [
                     {

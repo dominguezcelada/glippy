@@ -3,6 +3,6 @@
 <h3>by ${shoppingList.username}</h3>
 <ul>
 <c:forEach items="${shoppingList.listItems}" var="shoppingItem">
-    <li>${shoppingItem.quantity} x ${shoppingItem.name}</li>
+    <li>${shoppingItem.quantity} x ${shoppingItem.item.name}</li>
 </c:forEach>
 </ul>
