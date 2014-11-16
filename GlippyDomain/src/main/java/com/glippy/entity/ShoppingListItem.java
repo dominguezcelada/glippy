@@ -27,7 +27,7 @@ public class ShoppingListItem {
     }
 
     public ShoppingListItem(String itemName, double price) {
-        this.item = new Item(itemName);
+        this.item = new Item(itemName, price);
     }
 
     public ShoppingListItem(String itemName, double price, String supermarket) {
@@ -52,6 +52,10 @@ public class ShoppingListItem {
     public ShoppingListItem(String itemName, String description, String supermarket, double price, int quantity) {
         this.item = new Item(itemName, price, supermarket);
         this.quantity = quantity;
+    }
+
+    public ShoppingListItem(String itemName, String description) {
+        this.item = new Item(itemName, description);
     }
 
 

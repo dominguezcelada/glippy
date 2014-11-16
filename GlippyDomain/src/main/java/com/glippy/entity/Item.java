@@ -70,6 +70,11 @@ public class Item {
         this.prices.add(new Price(price,supermarket));
     }
 
+    public Item(String itemName, String description) {
+        this.name = itemName;
+        this.description = description;
+    }
+
 
     // Getters
 
