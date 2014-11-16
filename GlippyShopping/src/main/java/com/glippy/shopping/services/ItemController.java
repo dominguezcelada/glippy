@@ -23,21 +23,11 @@ public class ItemController {
         return "/allItems";
     }
 
-    @RequestMapping(value = {"", "/"}, method = RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.OK)
-    public void updateAllItems(ModelMap model) {
-        //TODO
-        //model.addAttribute("items", itemsRepository.update());
-    }
-
     @RequestMapping(value = {"/", ""}, method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void deleteAllItems() {
         itemRepository.deleteAll();
     }
-
-
-    // Requests BY NAME --- Shopping Lists
 
     @RequestMapping(value = {"/", ""}, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
@@ -45,18 +35,14 @@ public class ItemController {
         itemRepository.save(item);
     }
 
+
+    // Requests BY ITEM_NAME --- Items
+
     @RequestMapping(value = {"/{itemName}"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public String getItem(@PathVariable String itemName, ModelMap model) {
         model.addAttribute("item", itemRepository.findByName(itemName));
         return "/allItems";
-    }
-
-    @RequestMapping(value = {"/{itemName}"}, method = RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.OK)
-    public void updateItem(@PathVariable String itemName, @RequestBody Item item, ModelMap model) {
-        //TODO
-        //itemRepository.update(itemName, item);
     }
 
     @RequestMapping(value = "/{itemName}", method = RequestMethod.DELETE)
