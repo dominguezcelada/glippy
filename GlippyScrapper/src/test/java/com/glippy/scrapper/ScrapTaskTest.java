@@ -46,14 +46,14 @@ public class ScrapTaskTest {
                 price2 = new Price("El Corte Inglés",1.57),
                 price3 = new Price("Carrefour",1.70),
                 price4 = new Price("Hipercor",1.57),
-                price5 = new Price("Alcampo",1.57);
+                price5 = new Price("Alcampo",1.51);
         ArrayList<Price> originalPrices = new ArrayList<Price>(Arrays.asList(price1, price2, price3, price4, price5));
 
         Item originalItem = new Item("Hero","Confitura Cereza, Hero, Tarro 345 G", originalPrices);
         Item extractedItem = task.scrapItem("http://www.carritus.com/tienda/super/" + exampleSuper + "/cp/" + examplePostalCode + "/producto/29552058");
 
-        assertThat(originalItem.getPrices().size(), is(4));
-        assertThat(extractedItem.getPrices().size(), is(4));
+        assertThat(originalItem.getPrices().size(), is(5));
+        assertThat(extractedItem.getPrices().size(), is(5));
         assertThat(originalItem, is(equalTo(extractedItem)));
     }
 
@@ -81,10 +81,10 @@ public class ScrapTaskTest {
         assertThat(listExtractedItems.size(),is(297));
     }*/
 
-    @Test
+    /*@Test
     public void testScrapCategsLevel2() throws IOException {
-        RunMeTask task = new RunMeTask();
-        ArrayList<String> listExtractedItems = task.scrapCategUrls("http://www.carritus.com/tienda/super/" + exampleSuper + "/cp/" + examplePostalCode + "/cm/2493", ".cat-nivel-3 a", 2);
+        ScrapTask task = new ScrapTask();
+        ArrayList<String> listExtractedItems = task.scrapCategs("http://www.carritus.com/tienda/super/" + exampleSuper + "/cp/" + examplePostalCode + "/cm/2493", ".cat-nivel-3 a", 2);
         assertThat(listExtractedItems.size(),is(297));
-    }
+    }*/
 }

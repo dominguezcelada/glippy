@@ -104,7 +104,6 @@ public class Item {
         Item item = (Item) o;
 
         if (description != null ? !description.equals(item.description) : item.description != null) return false;
-        if (id != null ? !id.equals(item.id) : item.id != null) return false;
         if (!name.equals(item.name)) return false;
         if (prices != null ? !prices.equals(item.prices) : item.prices != null) return false;
 

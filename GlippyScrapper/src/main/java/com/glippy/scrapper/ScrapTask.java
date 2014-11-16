@@ -1,5 +1,7 @@
 package com.glippy.scrapper;
 
+import com.glippy.domain.ItemRepository;
+import com.glippy.domain.ShoppingListRepository;
 import com.glippy.entity.Item;
 import com.glippy.entity.Price;
 import org.jsoup.Jsoup;
@@ -23,9 +25,6 @@ public class ScrapTask {
 
     AbstractApplicationContext context = new ClassPathXmlApplicationContext("ScrapTask-context.xml");
     ItemRepository itemRepository = context.getBean(ItemRepository.class);
-
-    @Autowired
-    private ShoppingListRepository shoppingListRepository;
 
     public ScrapTask() {
     }
