@@ -3,6 +3,9 @@ package com.glippy.shopping.services;
 import com.glippy.domain.ItemRepository;
 import com.glippy.entity.Item;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -41,7 +44,7 @@ public class ItemController {
     @RequestMapping(value = {"/{itemName}"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public String getItem(@PathVariable String itemName, ModelMap model) {
-        model.addAttribute("item", itemRepository.findByName(itemName));
+        model.addAttribute("items", itemRepository.findByName(itemName));
         return "/allItems";
     }
 
@@ -49,5 +52,18 @@ public class ItemController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteItem(@PathVariable String itemName) {
         itemRepository.deleteByName(itemName);
+    }
+
+    // Request FIND ITEMS
+
+    @RequestMapping(value = {"/find"}, method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public String findItems(@RequestParam(value = "q") String keywords, ModelMap model) {
+        Query query = Query.query(
+                TextCriteria
+                        .forLanguage("en")
+                        .matching(keywords));
+        model.addAttribute("items", itemRepository.findAllTextCriteria(query));
+        return "/allItems";
     }
 }

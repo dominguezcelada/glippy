@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.ArrayList;
 
-public interface ItemRepository extends CrudRepository<Item, String> {
+public interface ItemRepository extends CrudRepository<Item, String>, ItemRepositoryCustom {
 
     ArrayList<Item> findByName(String itemName);
 
