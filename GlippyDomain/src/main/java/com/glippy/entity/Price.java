@@ -34,11 +34,6 @@ public class Price {
         this.price = price;
     }
 
-    public Price(String supermarket, double price, boolean selected) {
-        this.supermarket = supermarket;
-        this.price = price;
-    }
-
     // Setters
 
     public void setSupermarket(String supermarket) {
