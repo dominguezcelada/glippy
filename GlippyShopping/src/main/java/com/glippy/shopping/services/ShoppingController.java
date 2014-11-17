@@ -150,12 +150,12 @@ public class ShoppingController {
 
     @RequestMapping(value = {"/users/{username}/{listName}/{itemName}/check"}, method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void editSelectedPriceUserShoppingListItem(@PathVariable String username, @PathVariable String listName, @PathVariable String itemName, @RequestBody boolean check) {
+    public void editCheckStatusUserShoppingListItem(@PathVariable String username, @PathVariable String listName, @PathVariable String itemName, @RequestBody String check) {
         Query querySelect = new Query()
                 .addCriteria(Criteria.where("name").is(listName)
                         .and("username").is(username)
                         .and("listItems.item.name").is(itemName));
-        Update queryUpdate = new Update().set("listItems.$.checked", check);
+        Update queryUpdate = new Update().set("listItems.$.checked", Boolean.valueOf(check));
         shoppingListRepository.updateQuantity(querySelect, queryUpdate);
     }
 
