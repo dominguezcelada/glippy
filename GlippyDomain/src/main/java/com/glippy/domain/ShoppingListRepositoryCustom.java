@@ -12,4 +12,5 @@ import org.springframework.data.mongodb.core.query.Update;
 public interface ShoppingListRepositoryCustom {
     public void updateQuantity(Query querySelect, Update queryUpdate);
 
+    public void addItem(Query querySelect, Update queryUpdate);
 }

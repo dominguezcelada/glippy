@@ -1,6 +1,8 @@
 package com.glippy.shopping.services;
 
+import com.glippy.domain.ItemRepository;
 import com.glippy.domain.ShoppingListRepository;
+import com.glippy.entity.Item;
 import com.glippy.entity.ShoppingList;
 import com.glippy.entity.ShoppingListItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +12,11 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -22,11 +26,26 @@ public class ShoppingController {
     ShoppingListRepository shoppingListRepository;
 
     @Autowired
+    ItemRepository itemRepository;
+
+    @Autowired
     MongoTemplate mongoTemplate;
 
     //
     // Requets for ALL --- Shopping Lists
     //
+
+    @RequestMapping(value = {"/users/{username}/{listName}/add"}, method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void addItemUserShoppingList(@PathVariable String username, @PathVariable String listName, @RequestBody String iditem) {
+        Item item = itemRepository.findOne(iditem);
+        Query querySelect = new Query()
+                .addCriteria(Criteria.where("name").is(listName)
+                        .and("username").is(username));
+        ShoppingListItem shoppingListItem = new ShoppingListItem(item);
+        Update queryUpdate = new Update().push("listItems", shoppingListItem);
+        shoppingListRepository.addItem(querySelect, queryUpdate);
+    }
 
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
@@ -92,6 +111,7 @@ public class ShoppingController {
         return "/shoppingList";
     }
 
+
     @RequestMapping(value = "/users/{username}/{listName}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void deleteUserShoppingList(@PathVariable String username,@PathVariable String listName) {
@@ -126,7 +146,7 @@ public class ShoppingController {
         return "/shoppingItem";
     }
 
-    @RequestMapping(value = {"/users/{username}/{listName}/{itemName}"}, method = RequestMethod.PUT)
+    @RequestMapping(value = {"/users/{username}/{listName}/{itemName}/quantity"}, method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
     public void editQuantityUserShoppingListItem(@PathVariable String username, @PathVariable String listName, @PathVariable String itemName, @RequestBody String quantity) {
         Query querySelect = new Query()
