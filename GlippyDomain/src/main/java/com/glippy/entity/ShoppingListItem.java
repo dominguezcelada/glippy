@@ -67,6 +67,10 @@ public class ShoppingListItem {
         this.item = item;
     }
 
+    public ShoppingListItem(Item item) {
+        this.item = item;
+    }
+
     // Getters
 
     public int getQuantity() {
