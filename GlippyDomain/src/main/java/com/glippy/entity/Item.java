@@ -75,6 +75,12 @@ public class Item {
         this.description = description;
     }
 
+    public Item(String id, String name, String description, List<Price> prices) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.prices = prices;
+    }
 
     // Getters
 
