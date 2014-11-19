@@ -1,18 +1,11 @@
 {
-                "name": "Coca-Cola2",
-                "description": "Bebida refrescante",
-                "prices": [
-                    {
-                        "price": 0.53,
-                        "supermarket": "Mercadona"
-                    },
-                    {
-                        "price": 0.54,
-                        "supermarket": "Alcampo"
-                    },
-                    {
-                        "price": 0.55,
-                        "supermarket": "Condis"
-                    }
-                ]
+    "id": "5468f5dac05c6e58213c7a5b",
+    "prices": [
+        {
+            "supermarket": "Mercadona",
+            "price": 2.89
+        }
+    ],
+    "description": "Aceituna Aloreña (malagueña) Verdes, Partidas Y Aliñadas (tapa Amarilla), Roldan, Tarro 1440 G Escurrido 800 G",
+    "name": "Roldan"
 }
