@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<h1>${shoppingItem.item.id}</h1>
 <h1>${shoppingItem.item.name}</h1>
 <h3>x ${shoppingItem.quantity}</h3>
 <ul>
