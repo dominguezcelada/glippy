@@ -17,12 +17,18 @@ public class ShoppingListRepositoryImpl implements ShoppingListRepositoryCustom{
 
     @Override
     public void updateQuantity(Query querySelect, Update queryUpdate) {
-        mongoTemplate.updateMulti(querySelect, queryUpdate, ShoppingList.class);
+        mongoTemplate.updateFirst(querySelect, queryUpdate, ShoppingList.class);
     }
 
     @Override
     public void addItem(Query querySelect, Update queryUpdate) {
         mongoTemplate.updateFirst(querySelect, queryUpdate, ShoppingList.class);
     }
+
+    @Override
+    public void removeItem(Query querySelect, Update queryUpdate) {
+        mongoTemplate.updateFirst(querySelect, queryUpdate, ShoppingList.class);
+    }
+
 
 }

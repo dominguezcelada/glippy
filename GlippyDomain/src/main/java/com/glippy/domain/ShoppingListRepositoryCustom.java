@@ -13,4 +13,6 @@ public interface ShoppingListRepositoryCustom {
     public void updateQuantity(Query querySelect, Update queryUpdate);
 
     public void addItem(Query querySelect, Update queryUpdate);
+
+    public void removeItem(Query querySelect, Update queryUpdate);
 }
