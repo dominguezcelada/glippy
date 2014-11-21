@@ -14,11 +14,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -36,8 +33,6 @@ public class ShoppingController {
     //
     // Requets for ALL --- Shopping Lists
     //
-
-
 
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
@@ -58,24 +53,24 @@ public class ShoppingController {
     // Requests BY USERNAME --- Shopping Lists
     //
 
-    @RequestMapping(value = {"/users/{username}/lists"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/lists"}, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void createShoppingList(@PathVariable String username, @RequestBody ShoppingList list) {
-        list.setUsername(username);
+    public void createShoppingList(@RequestHeader(value = "Authorization", required=false) String credentials, @RequestBody ShoppingList list) {
+        list.setUsername(credentials.replace("Basic ",""));
         shoppingListRepository.save(list);
     }
 
-    @RequestMapping(value = {"/users/{username}/lists"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/lists"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public String getShoppingLists(@PathVariable String username, ModelMap model) {
-        model.addAttribute("shoppingLists", shoppingListRepository.findByUsername(username));
+    public String getShoppingLists(ModelMap model, @RequestHeader(value = "Authorization", required=false) String credentials) {
+        model.addAttribute("shoppingLists", shoppingListRepository.findByUsername(credentials.replace("Basic ","")));
         return "/allShoppingLists";
     }
 
-    @RequestMapping(value = "/users/{username}/lists", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/lists", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deleteShoppingLists(@PathVariable String username) {
-        shoppingListRepository.deleteByUsername(username);
+    public void deleteShoppingLists(@RequestHeader(value = "Authorization", required=false) String credentials) {
+        shoppingListRepository.deleteByUsername(credentials.replace("Basic ",""));
     }
 
 
@@ -85,9 +80,9 @@ public class ShoppingController {
     // Requests BY USERNAME --- SELECTED Shopping List
     //
 
-    @RequestMapping(value = {"/users/{username}/lists/{idList}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/lists/{idList}"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public String getShoppingList(@PathVariable String username, @PathVariable String idList, ModelMap model) {
+    public String getShoppingList(@RequestHeader(value = "Authorization", required=false) String credentials, @PathVariable String idList, ModelMap model) {
         ShoppingList shoppingList = shoppingListRepository.findOne(idList);
         model.addAttribute("shoppingList", shoppingList);
         double total = 0;
@@ -101,18 +96,18 @@ public class ShoppingController {
         return "/shoppingList";
     }
 
-    @RequestMapping(value = {"/users/{username}/lists/{idList}"}, method = RequestMethod.PUT)
+    @RequestMapping(value = {"/lists/{idList}"}, method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public String updateShoppingList(@PathVariable String username, @PathVariable String idList, @RequestBody String newListName) {
+    public String updateShoppingList(@RequestHeader(value = "Authorization", required=false) String credentials, @PathVariable String idList, @RequestBody String newListName) {
         ShoppingList list = shoppingListRepository.findOne(idList);
         list.setName(newListName);
         shoppingListRepository.save(list);
         return "/shoppingList";
     }
 
-    @RequestMapping(value = "/users/{username}/lists/{idList}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/lists/{idList}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deleteUserShoppingList(@PathVariable String username,@PathVariable String idList) {
+    public void deleteUserShoppingList(@RequestHeader(value = "Authorization", required=false) String credentials,@PathVariable String idList) {
         shoppingListRepository.delete(idList);
     }
 
@@ -124,9 +119,9 @@ public class ShoppingController {
     // Requests BY USERNAME --- SELECTED Item in Shoppping List
     //
 
-    @RequestMapping(value = {"/users/{username}/lists/{idList}/items"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/lists/{idList}/items"}, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void addItemUserShoppingList(@PathVariable String username, @PathVariable String idList, @RequestBody String idItem) {
+    public void addItemUserShoppingList(@RequestHeader(value = "Authorization", required=false) String credentials, @PathVariable String idList, @RequestBody String idItem) {
         Item item = itemRepository.findOne(idItem);
         Query querySelect = new Query()
                 .addCriteria(Criteria.where("_id").is(idList));
@@ -137,9 +132,9 @@ public class ShoppingController {
 
 
 
-    @RequestMapping(value = {"/users/{username}/lists/{idList}/items/{itemId}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/lists/{idList}/items/{itemId}"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public String getUserShoppingListItems(@PathVariable String username, @PathVariable String idList, @PathVariable String itemId, ModelMap model) {
+    public String getUserShoppingListItems(@RequestHeader(value = "Authorization", required=false) String credentials, @PathVariable String idList, @PathVariable String itemId, ModelMap model) {
         List<ShoppingListItem> items = shoppingListRepository.findOne(idList).getListItems();
         ShoppingListItem item = null;
         boolean found = false;
@@ -158,9 +153,9 @@ public class ShoppingController {
         return "/shoppingItem";
     }
 
-    @RequestMapping(value = {"/users/{username}/lists/{listId}/items/{itemId}/quantity"}, method = RequestMethod.PUT)
+    @RequestMapping(value = {"/lists/{listId}/items/{itemId}/quantity"}, method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void editQuantityUserShoppingListItem(@PathVariable String username, @PathVariable String listId, @PathVariable String itemId, @RequestBody String quantity) {
+    public void editQuantityUserShoppingListItem(@RequestHeader(value = "Authorization", required=false) String credentials, @PathVariable String listId, @PathVariable String itemId, @RequestBody String quantity) {
         Query querySelect = new Query()
                 .addCriteria(Criteria.where("_id").is(new ObjectId(listId))
                 .and("listItems.item._id").is(new ObjectId(itemId)));
@@ -168,9 +163,9 @@ public class ShoppingController {
         shoppingListRepository.updateQuantity(querySelect, queryUpdate);
     }
 
-    @RequestMapping(value = {"/users/{username}/lists/{listId}/items/{itemId}/price"}, method = RequestMethod.PUT)
+    @RequestMapping(value = {"/lists/{listId}/items/{itemId}/price"}, method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void editSelectedPriceUserShoppingListItem(@PathVariable String username, @PathVariable String listId, @PathVariable String itemId, @RequestBody String newSupermarket) {
+    public void editSelectedPriceUserShoppingListItem(@RequestHeader(value = "Authorization", required=false) String credentials, @PathVariable String listId, @PathVariable String itemId, @RequestBody String newSupermarket) {
         Query querySelect = new Query()
                 .addCriteria(Criteria.where("_id").is(new ObjectId(listId))
                         .and("listItems.item._id").is(new ObjectId(itemId)));
@@ -178,9 +173,9 @@ public class ShoppingController {
         shoppingListRepository.updateQuantity(querySelect, queryUpdate);
     }
 
-    @RequestMapping(value = {"/users/{username}/lists/{listId}/items/{itemId}/check"}, method = RequestMethod.PUT)
+    @RequestMapping(value = {"/lists/{listId}/items/{itemId}/check"}, method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void editCheckStatusUserShoppingListItem(@PathVariable String username, @PathVariable String listId, @PathVariable String itemId, @RequestBody String check) {
+    public void editCheckStatusUserShoppingListItem(@RequestHeader(value = "Authorization", required=false) String credentials, @PathVariable String listId, @PathVariable String itemId, @RequestBody String check) {
         Query querySelect = new Query()
                 .addCriteria(Criteria.where("_id").is(new ObjectId(listId))
                         .and("listItems.item._id").is(new ObjectId(itemId)));
@@ -188,9 +183,9 @@ public class ShoppingController {
         shoppingListRepository.updateQuantity(querySelect, queryUpdate);
     }
 
-    @RequestMapping(value = {"/users/{username}/lists/{listId}/items/{itemId}"}, method = RequestMethod.DELETE)
+    @RequestMapping(value = {"/lists/{listId}/items/{itemId}"}, method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void removeItemFromUserShoppingListItem(@PathVariable String username, @PathVariable String listId, @PathVariable String itemId) {
+    public void removeItemFromUserShoppingListItem(@RequestHeader(value = "Authorization", required=false) String credentials, @PathVariable String listId, @PathVariable String itemId) {
         Query querySelect = new Query()
                 .addCriteria(Criteria.where("_id").is(new ObjectId(listId)));
         Update queryUpdate = new Update().pull("listItems", new Query().addCriteria(Criteria.where("item._id").is(new ObjectId(itemId))));
