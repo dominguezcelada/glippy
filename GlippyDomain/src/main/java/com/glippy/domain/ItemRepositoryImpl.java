@@ -18,7 +18,7 @@ public class ItemRepositoryImpl implements ItemRepositoryCustom{
 
     @Override
     public List<Item> findAllTextCriteria(Query querySelect) {
-        return mongoTemplate.find(querySelect, Item.class);
+        return mongoTemplate.find(querySelect.limit(20), Item.class);
     }
 
 }
