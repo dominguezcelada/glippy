@@ -160,7 +160,7 @@ public class ShoppingController {
                 .addCriteria(Criteria.where("_id").is(new ObjectId(listId))
                 .and("listItems.item._id").is(new ObjectId(itemId)));
         Update queryUpdate = new Update().set("listItems.$.quantity", Integer.valueOf(quantity));
-        shoppingListRepository.updateQuantity(querySelect, queryUpdate);
+        shoppingListRepository.updateShoppingList(querySelect, queryUpdate);
     }
 
     @RequestMapping(value = {"/lists/{listId}/items/{itemId}/price"}, method = RequestMethod.PUT)
@@ -170,7 +170,7 @@ public class ShoppingController {
                 .addCriteria(Criteria.where("_id").is(new ObjectId(listId))
                         .and("listItems.item._id").is(new ObjectId(itemId)));
         Update queryUpdate = new Update().set("listItems.$.selectedSupermarket", newSupermarket);
-        shoppingListRepository.updateQuantity(querySelect, queryUpdate);
+        shoppingListRepository.updateShoppingList(querySelect, queryUpdate);
     }
 
     @RequestMapping(value = {"/lists/{listId}/items/{itemId}/check"}, method = RequestMethod.PUT)
@@ -180,7 +180,7 @@ public class ShoppingController {
                 .addCriteria(Criteria.where("_id").is(new ObjectId(listId))
                         .and("listItems.item._id").is(new ObjectId(itemId)));
         Update queryUpdate = new Update().set("listItems.$.checked", Boolean.valueOf(check));
-        shoppingListRepository.updateQuantity(querySelect, queryUpdate);
+        shoppingListRepository.updateShoppingList(querySelect, queryUpdate);
     }
 
     @RequestMapping(value = {"/lists/{listId}/items/{itemId}"}, method = RequestMethod.DELETE)
