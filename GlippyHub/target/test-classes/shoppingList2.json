@@ -1,27 +1,54 @@
 {
     "name": "list2",
     "username": "",
-    "items": [
+    "listItems": [
         {
-            "name":"Galletas Principe",
-            "description":"Cookies de chocolate",
-            "price":2.75,
-            "supermarket":"carrefour",
-            "quantity": 1
+            "selectedSupermarket":"Carrefour",
+            "item" : {
+                "name":"Galletas Principe",
+                "description":"Cookies de chocolate",
+                "prices" : [
+                    {
+                        "supermarket":"Carrefour"
+                    }
+                ]
+            }
         },
         {
-            "name":"Orange Juice",
-            "description":"Bebida refrescante",
-            "price":1.33,
-            "supermarket":"carrefour",
-            "quantity": 4
+            "quantity": 4,
+            "selectedSupermarket":"Alcampo",
+            "item": {
+                "name":"Orange Juice",
+                "description":"Bebida refrescante",
+                "prices" : [
+                    {
+                        "price":2.75
+                    },
+                    {
+                        "supermarket":"Alcampo",
+                        "price":2.76
+                    },
+                    {
+                        "supermarket":"Condis",
+                        "price":2.77
+                    },
+                    {
+                        "supermarket":"Carrefour",
+                        "price":2.77
+                    }
+                ]
+            }
         },
         {
-            "name":"Coffee",
-            "description":"Cafés",
-            "price":1.10,
-            "supermarket":"carrefour",
-            "quantity": 1
+            "selectedSupermarket":"Mercadona",
+            "item":{
+                "name":"Coffee",
+                "prices": [
+                    {
+
+                    }
+                ]
+            }
         }
     ]
 }
