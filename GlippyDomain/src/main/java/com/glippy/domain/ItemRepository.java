@@ -10,4 +10,6 @@ public interface ItemRepository extends CrudRepository<Item, String>, ItemReposi
     ArrayList<Item> findByName(String itemName);
 
     ArrayList<Item> deleteByName(String itemName);
+
+    Item findByNameAndDescription(String name, String description);
 }

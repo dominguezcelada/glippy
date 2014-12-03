@@ -1,26 +1,19 @@
 package com.glippy.scrapper;
 
 import com.glippy.domain.ItemRepository;
-import com.glippy.domain.ShoppingListRepository;
 import com.glippy.entity.Item;
 import com.glippy.entity.Price;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
-@Service
-@Component
-@ContextConfiguration("/ScrapTask-context.xml")
 public class ScrapTask {
 
     AbstractApplicationContext context = new ClassPathXmlApplicationContext("ScrapTask-context.xml");
@@ -41,7 +34,8 @@ public class ScrapTask {
             prices.add(new Price(supermarket,price));
         }
         Item item = new Item(name, description, prices);
-        itemRepository.save(item);
+        Item found = itemRepository.findByNameAndDescription(name, description);
+        if(found == null) itemRepository.save(item);
         return item;
     }
 

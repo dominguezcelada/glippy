@@ -12,5 +12,4 @@ import java.util.List;
  */
 public interface ItemRepositoryCustom {
     public List<Item> findAllTextCriteria(Query querySelect);
-
 }

@@ -17,15 +17,21 @@
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg>
             <bean class="org.springframework.data.mongodb.core.MongoFactoryBean">
-                <property name="host" value="127.0.0.1"/>
+                <property name="host" value="ds057000.mongolab.com:57000"/>
             </bean>
         </constructor-arg>
         <constructor-arg name="databaseName" value="glippy"/>
+        <constructor-arg name="userCredentials" ref="mongoCredentials"/>
 
         <property name="writeConcern">
             <util:constant static-field="com.mongodb.WriteConcern.SAFE"/>
         </property>
         <property name="writeResultChecking" value="EXCEPTION"/>
+    </bean>
+
+    <bean id="mongoCredentials" class="org.springframework.data.authentication.UserCredentials">
+        <constructor-arg name="username" value="oscardom" />
+        <constructor-arg name="password" value="123456" />
     </bean>
 
     <!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->

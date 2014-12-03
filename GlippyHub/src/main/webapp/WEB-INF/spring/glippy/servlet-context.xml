@@ -70,6 +70,7 @@
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg ref="mongo"/>
         <constructor-arg name="databaseName" value="glippy"/>
+        <constructor-arg name="userCredentials" ref="mongoCredentials"/>
 
         <property name="writeConcern">
             <util:constant static-field="com.mongodb.WriteConcern.SAFE"/>
@@ -78,7 +79,12 @@
         <property name="writeResultChecking" value="EXCEPTION"/>
     </bean>
 
-    <mongo:mongo id="mongo" replica-set="127.0.0.1:27017" >
+    <bean id="mongoCredentials" class="org.springframework.data.authentication.UserCredentials">
+        <constructor-arg name="username" value="oscardom" />
+        <constructor-arg name="password" value="123456" />
+    </bean>
+
+    <mongo:mongo id="mongo" replica-set="ds057000.mongolab.com:57000" >
         <mongo:options auto-connect-retry="true"
                        connections-per-host="30"
                        threads-allowed-to-block-for-connection-multiplier="5" />

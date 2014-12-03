@@ -8,6 +8,7 @@ import com.glippy.entity.ShoppingList;
 import com.glippy.entity.ShoppingListItem;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -37,7 +38,9 @@ public class ShoppingController {
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public String getAllShoppingLists(ModelMap model) {
-        model.addAttribute("shoppingLists", shoppingListRepository.findAll());
+        Query querySelect = new Query()
+                .with(new Sort(new Sort.Order(Sort.Direction.DESC, "createdDate")));
+        model.addAttribute("shoppingLists", shoppingListRepository.findCustom(querySelect));
         return "/allShoppingLists";
     }
 
@@ -63,7 +66,11 @@ public class ShoppingController {
     @RequestMapping(value = {"/lists"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public String getShoppingLists(ModelMap model, @RequestHeader(value = "Authorization", required=false) String credentials) {
-        model.addAttribute("shoppingLists", shoppingListRepository.findByUsername(credentials.replace("Basic ","")));
+        Query querySelect = new Query()
+                .addCriteria(Criteria.where("username").is(credentials.replace("Basic ","")))
+                .with(new Sort(new Sort.Order(Sort.Direction.DESC, "createdDate")));
+        model.addAttribute("shoppingLists", shoppingListRepository.findCustom(querySelect));
+//        model.addAttribute("shoppingLists", shoppingListRepository.findByUsername(credentials.replace("Basic ","")));
         return "/allShoppingLists";
     }
 
