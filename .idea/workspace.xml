@@ -2,6 +2,107 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93f10292-49ca-4ff4-bb7f-0c6a3e9b5062" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Procfile" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\GlippyDomain-1.0.zip" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\classes\com\glippy\domain\ItemRepository.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\classes\com\glippy\domain\ItemRepositoryCustom.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\classes\com\glippy\domain\ItemRepositoryImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\classes\com\glippy\domain\ShoppingListRepository.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\classes\com\glippy\domain\ShoppingListRepositoryCustom.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\classes\com\glippy\domain\ShoppingListRepositoryImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\classes\com\glippy\entity\Item.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\classes\com\glippy\entity\Price.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\classes\com\glippy\entity\ShoppingList.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\classes\com\glippy\entity\ShoppingListItem.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\maven-archiver\pom.properties" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\surefire\surefire6313338231161805421tmp" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\surefire\surefire8427503299120995730tmp" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\test-classes\ItemRepositoryTest-context.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\test-classes\ShoppingListRepositoryTest-context.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\test-classes\com\glippy\domain\ItemRepositoryTest.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\test-classes\com\glippy\domain\ShoppingListRepositoryTest.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\test-classes\com\glippy\entity\ItemTest.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\test-classes\com\glippy\entity\PriceTest.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\test-classes\com\glippy\entity\ShoppingListItemTest.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyDomain\target\test-classes\com\glippy\entity\ShoppingListTest.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\test-classes\item1.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\test-classes\shoppingList1.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\test-classes\shoppingList2.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\test-classes\shoppingList3.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\classes\logback.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\GlippyDomain-1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\GlippyShopping-1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\activation-1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\aopalliance-1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\asm-3.3.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\aspectjrt-1.7.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\aspectjweaver-1.7.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\c3p0-0.9.1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\cglib-2.2.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\commons-codec-1.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\commons-logging-1.1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\guice-2.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\httpclient-4.2.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\httpcore-4.2.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\jackson-annotations-2.4.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\jackson-core-2.4.1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\jackson-databind-2.4.1.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\jcip-annotations-1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\jcl-over-slf4j-1.7.7.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\joda-time-2.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\jsoup-1.7.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\jstl-1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\jul-to-slf4j-1.7.7.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\logback-access-1.1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\logback-classic-1.1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\logback-core-1.1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\mail-1.4.5-rc1.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\mongo-java-driver-2.12.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\nekohtml-1.9.20.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\openid4java-nodeps-0.9.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\quartz-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\quartz-jobs-2.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\slf4j-api-1.7.7.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-aop-4.1.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-beans-4.1.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-context-4.1.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-context-support-4.1.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-core-4.1.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-data-commons-1.9.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-data-mongodb-1.6.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-expression-4.1.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-jdbc-4.1.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-orm-4.1.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-security-acl-3.2.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-security-config-3.2.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-security-core-3.2.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-security-openid-3.2.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-security-taglibs-3.2.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-security-web-3.2.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-tx-4.1.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-web-4.1.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\spring-webmvc-4.1.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\xercesImpl-2.9.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\lib\xml-apis-1.3.04.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\spring\glippy\servlet-context.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\spring\root-context.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyHub\target\webapp\WEB-INF\web.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyScrapper\target\classes\ScrapTask-context.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyScrapper\target\classes\Spring-Quartz.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyScrapper\target\classes\com\glippy\scrapper\App.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyScrapper\target\classes\com\glippy\scrapper\JobCategories.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyScrapper\target\classes\com\glippy\scrapper\ScrapJob.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyScrapper\target\classes\com\glippy\scrapper\ScrapTask.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyScrapper\target\test-classes\ScrapTaskTest-context.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyScrapper\target\test-classes\com\glippy\scrapper\ScrapTaskTest.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyShopping\target\classes\META-INF\resources\WEB-INF\allItems.jsp" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyShopping\target\classes\META-INF\resources\WEB-INF\allShoppingItems.jsp" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyShopping\target\classes\META-INF\resources\WEB-INF\allShoppingLists.jsp" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyShopping\target\classes\META-INF\resources\WEB-INF\item.jsp" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyShopping\target\classes\META-INF\resources\WEB-INF\shoppingItem.jsp" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyShopping\target\classes\META-INF\resources\WEB-INF\shoppingList.jsp" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyShopping\target\classes\com\glippy\shopping\services\ItemController.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\oscar\work\PFC\Glippy\GlippyShopping\target\classes\com\glippy\shopping\services\ShoppingController.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="ac8cdc6a-e397-420e-a905-0abc47a61af3" name="local" comment="" />
@@ -37,7 +138,7 @@
       <file leaf-file-name="ShoppingController.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GlippyShopping/src/main/java/com/glippy/shopping/services/ShoppingController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6803519" vertical-offset="2335" max-vertical-offset="3230">
+            <state vertical-scroll-proportion="7.030303" vertical-offset="2335" max-vertical-offset="3230">
               <caret line="170" column="5" selection-start-line="170" selection-start-column="5" selection-end-line="170" selection-end-column="5" />
               <folding />
             </state>
@@ -155,6 +256,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Glippy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -162,26 +273,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="Glippy" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Glippy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Glippy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Glippy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -923,6 +1014,8 @@
       <workItem from="1417121240193" duration="697000" />
       <workItem from="1417567115142" duration="46000" />
       <workItem from="1417622132575" duration="858000" />
+      <workItem from="1417624114619" duration="105000" />
+      <workItem from="1417624603777" duration="207000" />
     </task>
     <task id="LOCAL-00001" summary="First Iteration migration shoppingList with all the prices. (Pending 'selected attribute + tests + adapt controllers.))">
       <created>1416142530026</created>
@@ -1048,7 +1141,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119655000" />
+    <option name="totallyTimeSpent" value="119967000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1075,7 +1168,7 @@
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33910036" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.8719723" sideWeight="0.61058927" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1085,7 +1178,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4463668" sideWeight="0.68146884" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37716264" sideWeight="0.31853116" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33910036" sideWeight="0.31853116" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1513,7 +1606,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GlippyShopping/src/main/java/com/glippy/shopping/services/ShoppingController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6803519" vertical-offset="2335" max-vertical-offset="3230">
+        <state vertical-scroll-proportion="7.030303" vertical-offset="2335" max-vertical-offset="3230">
           <caret line="170" column="5" selection-start-line="170" selection-start-column="5" selection-end-line="170" selection-end-column="5" />
           <folding />
         </state>
