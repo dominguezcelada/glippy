@@ -1,7 +1,6 @@
 package com.glippy.domain;
 
 import com.glippy.entity.Item;
-import com.glippy.entity.ShoppingList;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +20,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/ItemRepositoryTest-context.xml")
+@ContextConfiguration("/repositoryDomainTest-context.xml")
 public class ItemRepositoryTest {
 
     @Autowired
@@ -51,6 +50,29 @@ public class ItemRepositoryTest {
         // Assertion
         assertThat(items.size(), is(1));
         assertThat(items.contains(item2),is(true));
+    }
+
+
+    @Test
+    public void testFindByNameAndDescription() throws Exception {
+        // Setup
+        Item item1 = new Item("Coca-Cola").addPrice("mercadona", 0.53).addPrice("alcampo", 0.53),
+                item2 = new Item("Beer").addPrice("mercadona", 0.43),
+                item3 = new Item("Yogur").addPrice("carrefour", 0.83).addPrice("alcampo", 0.84);
+
+        item1.setDescription("Bebida Refrescante");
+        item2.setDescription("Bebida Refrescante");
+        item3.setDescription("Lácteos");
+
+        itemRepository.save(Arrays.asList(item1, item2, item3));
+
+        // Exercise
+        Item foundItem = itemRepository.findByNameAndDescription("Beer","Bebida Refrescante");
+
+        // Assertion
+        assertThat(foundItem.getDescription(), is("Bebida Refrescante"));
+        assertThat(foundItem.getName(),is("Beer"));
+
     }
 
     // Delete
