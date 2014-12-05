@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.data.mongodb.core.query.Update;
 
 import java.util.List;
@@ -20,8 +21,12 @@ public class ItemRepositoryImpl implements ItemRepositoryCustom{
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<Item> findAllTextCriteria(Query querySelect) {
-        return mongoTemplate.find(querySelect.limit(20), Item.class);
+    public List<Item> findAllTextCriteria(String keywords, String language) {
+        Query query = Query.query(
+                TextCriteria
+                        .forLanguage(language)
+                        .matching(keywords));
+        return mongoTemplate.find(query.limit(20), Item.class);
     }
 
 }
