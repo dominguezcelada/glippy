@@ -59,11 +59,7 @@ public class ItemController {
     @RequestMapping(value = {"/find"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public String findItems(@RequestParam(value = "q") String keywords, ModelMap model) {
-        Query query = Query.query(
-                TextCriteria
-                        .forLanguage("en")
-                        .matching(keywords));
-        model.addAttribute("items", itemRepository.findAllTextCriteria(query));
+        model.addAttribute("items", itemRepository.findAllTextCriteria(keywords, "en"));
         return "/allItems";
     }
 }
