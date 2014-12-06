@@ -26,6 +26,8 @@ public class ScrapTask {
         Document doc = Jsoup.connect(url).get();
         String name = doc.select(".info h2").text();
         String description = doc.select(".info h3").text();
+        String category = doc.select(".breadcrumb .btn-group:nth-of-type(2) .btn").text();
+        String imageURL = "http://www.carritus.com" + doc.select(".ficha-producto .image img").attr("src");
         Elements elemPrices = doc.select(".cuanto-vale-en tr");
         ArrayList<Price> prices = new ArrayList<Price>();
         for(int i = 0; i < elemPrices.size(); i++) {
@@ -33,7 +35,7 @@ public class ScrapTask {
             double price = Double.parseDouble(elemPrices.get(i).getElementsByClass("price").text().replace('€', ' ').replace(',', '.'));
             prices.add(new Price(supermarket,price));
         }
-        Item item = new Item(name, description, prices);
+        Item item = new Item(name, description, prices, category, imageURL);
         Item found = itemRepository.findByNameAndDescription(name, description);
         if(found == null) itemRepository.save(item);
         return item;
