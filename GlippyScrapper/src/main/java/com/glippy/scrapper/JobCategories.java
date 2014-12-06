@@ -58,7 +58,15 @@ public class JobCategories extends QuartzJobBean {
         }*/
 //        String selector = (String) context.getJobDetail().getJobDataMap().get(key);
         try {
+            // Colas
             ArrayList<Item> items = scrapTask.scrapCategs("http://www.carritus.com/tienda/super/" + exampleSuper + "/cp/" + examplePostalCode + "/cm/1731", ".content .item .image a", 0);
+
+            // Fanta Naranja
+            items = scrapTask.scrapCategs("http://www.carritus.com/tienda/super/" + exampleSuper + "/cp/" + examplePostalCode + "/cm/1735", ".content .item .image a", 0);
+
+            // Aguas
+            items = scrapTask.scrapCategs("http://www.carritus.com/tienda/super/" + exampleSuper + "/cp/" + examplePostalCode + "/cm/2752", ".content .item .image a", 0);
+
 //            context.getJobDetail().getJobDataMap().put(key,urls);
 //            System.out.println(key + ": " + urls.size() + " " + context.getJobDetail().getJobDataMap().get(key));
         } catch (IOException e) {
