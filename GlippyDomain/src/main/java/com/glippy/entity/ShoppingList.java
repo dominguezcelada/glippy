@@ -86,6 +86,22 @@ public class ShoppingList {
         return listItems;
     }
 
+    public double getCheckedTotal() {
+        double checkedTotal = 0;
+        List<ShoppingListItem> items = getListItems();
+        for(int i = 0; i < items.size(); i++) {
+            if(items.get(i).isChecked()) {
+                List<Price> prices = items.get(i).getItem().getPrices();
+                for(int j = 0; j < prices.size(); j++) {
+                    if(prices.get(j).getSupermarket().equals(items.get(i).getSelectedSupermarket())) {
+                        checkedTotal += items.get(i).getQuantity() * items.get(i).getItem().getPrices().get(j).getPrice();
+                    }
+                }
+            }
+        }
+        return checkedTotal;
+    }
+
     //Setters
 
     public void setName(String name) {
@@ -148,5 +164,17 @@ public class ShoppingList {
     public ShoppingList addItem(String itemName, double price, String supermarket, int quantity) {
         this.listItems.add(new ShoppingListItem(itemName, price, supermarket, quantity));
         return this;
+    }
+
+    public double getTotal() {
+        double total = 0;
+        for (int i = 0; i < getListItems().size(); i++) {
+            List<Price> prices = getListItems().get(i).getItem().getPrices();
+            String selectedSupermarket = getListItems().get(i).getSelectedSupermarket();
+            for(int j = 0; j < prices.size(); j++)
+                if(prices.get(j).getSupermarket().equals(selectedSupermarket)) total += getListItems().get(i).getQuantity() * prices.get(j).getPrice();
+        }
+        return total;
+
     }
 }

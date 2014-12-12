@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @Controller
@@ -92,13 +93,7 @@ public class ShoppingController {
     public String getShoppingList(@RequestHeader(value = "Authorization", required=false) String credentials, @PathVariable String idList, ModelMap model) {
         ShoppingList shoppingList = shoppingListRepository.findOne(idList);
         model.addAttribute("shoppingList", shoppingList);
-        double total = 0;
-        for (int i = 0; i < shoppingList.getListItems().size(); i++) {
-            List<Price> prices = shoppingList.getListItems().get(i).getItem().getPrices();
-            String selectedSupermarket = shoppingList.getListItems().get(i).getSelectedSupermarket();
-            for(int j = 0; j < prices.size(); j++)
-                if(prices.get(j).getSupermarket().equals(selectedSupermarket)) total += shoppingList.getListItems().get(i).getQuantity() * prices.get(j).getPrice();
-        }
+        double total = shoppingList.getTotal();
         model.addAttribute("total", total);
         return "/shoppingList";
     }
@@ -110,6 +105,20 @@ public class ShoppingController {
         list.setName(newListName);
         shoppingListRepository.save(list);
         return "/shoppingList";
+    }
+
+    @RequestMapping(value = {"/lists/{listId}/bestprice"}, method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public void editSelectedPriceAllUserShoppingListItems(@RequestHeader(value = "Authorization", required=false) String credentials, @PathVariable String listId, @RequestBody String newSupermarket) {
+        ShoppingList list = shoppingListRepository.findOne(listId);
+        List<ShoppingListItem> items = list.getListItems();
+        for(int i = 0; i < items.size(); i++) {
+            Query querySelect = new Query()
+                    .addCriteria(Criteria.where("_id").is(new ObjectId(listId))
+                            .and("listItems.item._id").is(new ObjectId(items.get(i).getItem().getId())));
+            Update queryUpdate = new Update().set("listItems.$.selectedSupermarket", newSupermarket);
+            shoppingListRepository.updateShoppingList(querySelect, queryUpdate);
+        }
     }
 
     @RequestMapping(value = "/lists/{idList}", method = RequestMethod.DELETE)
@@ -198,6 +207,25 @@ public class ShoppingController {
         Update queryUpdate = new Update().pull("listItems", new Query().addCriteria(Criteria.where("item._id").is(new ObjectId(itemId))));
         shoppingListRepository.removeItem(querySelect, queryUpdate);
     }
+
+    /* Stats */
+
+    @RequestMapping(value = {"/stats"}, method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public String getUserGeneralStats (@RequestHeader(value = "Authorization", required=false) String credentials, ModelMap model) {
+        List<ShoppingList> lists = shoppingListRepository.findByUsername(credentials.replace("Basic ",""));
+        double totals[] = null;
+
+        for(int i = 0; i < lists.size(); i++) {
+            totals[i] = lists.get(i).getCheckedTotal();
+        }
+
+        model.addAttribute("shoppingLists", lists);
+        model.addAttribute("totals", totals);
+
+        return "/allStats";
+    }
+
 
 
 }
