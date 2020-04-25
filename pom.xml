@@ -27,7 +27,7 @@
         <logback.version>1.1.2</logback.version>
         <jsoup.version>1.7.2</jsoup.version>
 
-        <aspectj.version>1.7.3</aspectj.version>
+        <aspectj.version>1.9.5</aspectj.version>
     </properties>
 
     <build>
